@@ -47,7 +47,18 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<string>NSPhotoLibraryAddUsageDescription</string>
+
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>saveErweima</string>
+
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>image picker1</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>image picker2</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>image picker3</string>
+
 </dict>
 </plist>

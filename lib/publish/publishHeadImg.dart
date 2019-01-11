@@ -7,6 +7,7 @@ import 'package:flutter_fuqi/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:flutter_fuqi/fuqi/user_detail.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class publishHeadImagePage extends StatefulWidget {
 
@@ -157,8 +158,10 @@ class _publishHeadImagePageState extends State<publishHeadImagePage> {
     }
 
     try{
-
-
+      SpinKitRotatingCircle(
+        color: Colors.white,
+        size: 50.0,
+      );
       var response = await dioTool.dio.patch('${Constants.host}/app/userDetail/${tool.myUserData['id']}/',data:formData);
       Navigator.of(context).pop();
       tool.showToast("发布成功");

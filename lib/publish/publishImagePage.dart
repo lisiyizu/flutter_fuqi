@@ -184,6 +184,7 @@ class _publishImagePageState extends State<publishImagePage> {
     }
 
     try{
+
       var response = await dioTool.dio.post('${Constants.host}/app/uploadUserImage/',data:formData);
       tool.showToast("发布成功");
       Navigator.of(context).pop();
