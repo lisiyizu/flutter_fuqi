@@ -12,7 +12,7 @@
          additional functionality it is fine to subclass or reimplement
          FlutterApplication and put your custom class here. -->
     <application
-        android:name="io.flutter.app.FlutterApplication"
+        android:name="site.fuqi.www"
         android:label="夫妻之家"
         android:icon="@mipmap/ic_launcher">
         <activity

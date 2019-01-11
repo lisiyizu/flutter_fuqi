@@ -12,7 +12,6 @@ class advertPage extends StatelessWidget{
   var _imageFile;
 
 
-
   void _saveImage() async {
     RenderRepaintBoundary boundary =
     rootWidgetKey.currentContext.findRenderObject();
