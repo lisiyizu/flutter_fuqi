@@ -47,5 +47,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<string>NSPhotoLibraryAddUsageDescription</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>saveErweima</string>
 </dict>
 </plist>
