@@ -11,7 +11,6 @@ class advertPage extends StatelessWidget{
   Uint8List pngBytes;
   var _imageFile;
 
-
   void _saveImage() async {
     RenderRepaintBoundary boundary =
     rootWidgetKey.currentContext.findRenderObject();
@@ -28,7 +27,7 @@ class advertPage extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    tool.showLongToast("邀请好友并填写你的邀请码即可获得10枚夫妻币", 4);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('夫妻之家邀请码'),
