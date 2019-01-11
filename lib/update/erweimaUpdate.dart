@@ -20,7 +20,7 @@ class erweimaUpdate extends StatelessWidget{
     ByteData byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     final result = await ImageGallerySaver.save(byteData.buffer.asUint8List());
     if (result){
-      tool.showToast("推广码已保存至相册");
+      tool.showToast("下载地址已保存至相册");
     }else{
       tool.showToast("保存失败,请直接截图");
     }

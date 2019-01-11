@@ -125,7 +125,7 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
     if (this.mounted){
       if(ArticleData.length == 0){
         tool.showToast("您还没有发布自己的文章");
-        Navigator.of(context).pushNamed('/discover');
+        return;
       }
       setState(() {
         // 是否是加载更多数据
@@ -180,10 +180,7 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     // TODO: implement build
     if (_articleDatas.length == 0) {
-      return new Center(
-        // CircularProgressIndicator是一个圆形的Loading进度条
-        child: new CircularProgressIndicator(),
-      );
+      return tool.getProgressIndicator();
     }else {
       return Scaffold(
         appBar: AppBar(

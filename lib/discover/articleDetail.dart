@@ -201,10 +201,11 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
     try{
       await dioTool.dio.get("${Constants.host}/app/searchArticles/${widget.mData.id}/");
     }on DioError catch (e){
-      print(e.response.statusCode);
-      tool.showToast("网络异常");
-      if (e.response.statusCode == 401){
+      if(e.response != null && e.response.statusCode == 401){
+        tool.showToast("登录信息已失效");
         Navigator.of(context).pushNamed('/login');
+      }else{
+        tool.showToast("网络异常");
       }
     }
   }

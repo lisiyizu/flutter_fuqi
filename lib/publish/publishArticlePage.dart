@@ -6,8 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
-import 'package:flutter_fuqi/discover/discoverPage.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 
 class publishArticlePage extends StatefulWidget {
@@ -251,7 +249,9 @@ class _publishArticlePageState extends State<publishArticlePage> {
     }
 
     try{
+      showDialog(context: ctx,child: tool.getProgressIndicator(info: "数据上传中..."));
       var response = await dioTool.dio.post('${Constants.host}/app/writeArticle/',data:formData);
+      Navigator.of(context).pop();
       Navigator.of(context).pop();
       if (widget.category == '认证夫妻'){
         tool.showToast("发布成功,请去认证夫妻板块查看");
@@ -259,9 +259,12 @@ class _publishArticlePageState extends State<publishArticlePage> {
         tool.showToast("发布成功,请去论坛板块查看");
       }
     }on DioError catch (e){
-      print(e.response.statusCode);
-      tool.showToast("网络异常");
-      Navigator.of(context).pushNamed('/login');
+      if(e.response != null && e.response.statusCode == 401){
+        tool.showToast("登录信息已失效");
+        Navigator.of(context).pushNamed('/login');
+      }else{
+        tool.showToast("网络异常");
+      }
     }
   }
 

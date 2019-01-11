@@ -7,7 +7,7 @@ import 'package:flutter_fuqi/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:flutter_fuqi/fuqi/user_detail.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 
 class publishHeadImagePage extends StatefulWidget {
 
@@ -158,11 +158,9 @@ class _publishHeadImagePageState extends State<publishHeadImagePage> {
     }
 
     try{
-      SpinKitRotatingCircle(
-        color: Colors.white,
-        size: 50.0,
-      );
+      showDialog(context: ctx,child: tool.getProgressIndicator(info: "数据上传中..."));
       var response = await dioTool.dio.patch('${Constants.host}/app/userDetail/${tool.myUserData['id']}/',data:formData);
+      Navigator.of(context).pop();
       Navigator.of(context).pop();
       tool.showToast("发布成功");
       //更新个人资料
@@ -171,8 +169,7 @@ class _publishHeadImagePageState extends State<publishHeadImagePage> {
         return UserDetail(id: tool.myUserData['id']);
       }));
     }on DioError catch (e){
-      print(e.response.statusCode);
-      if(e.response.statusCode == 401){
+      if(e.response != null && e.response.statusCode == 401){
         tool.showToast("登录信息已失效");
         Navigator.of(context).pushNamed('/login');
       }else{

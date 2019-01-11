@@ -111,11 +111,12 @@ class tool {
     }
   }
 
-  static Widget getProgressIndicator() {
-    return new Center(
-      // CircularProgressIndicator是一个圆形的Loading进度条
-      child: new CircularProgressIndicator(),
-    );
+  static Widget getProgressIndicator({info:'数据加载中...'}) {
+//    return new Center(
+//      // CircularProgressIndicator是一个圆形的Loading进度条
+//      child: new CircularProgressIndicator(),
+//    );
+    return LoadingDialog(text:info);
   }
   //"2018-11-21T22:10:36.860805",
   static String processTime(String time){
@@ -186,4 +187,54 @@ class tool {
     }
   }
 }
+
+
+//自定义dialog
+class LoadingDialog extends Dialog {
+  String text;
+
+  LoadingDialog({Key key, @required this.text}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Material( //创建透明层
+      type: MaterialType.transparency, //透明类型
+      child: new Center( //保证控件居中效果
+        child: new SizedBox(
+          width: 120.0,
+          height: 120.0,
+          child: new Container(
+            decoration: ShapeDecoration(
+              color: Colors.green,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8.0),
+                ),
+              ),
+            ),
+            child: new Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                new CircularProgressIndicator(),
+                new Padding(
+                  padding: const EdgeInsets.only(
+                    top: 20.0,
+                  ),
+                  child: new Text(
+                    text,
+                    style: new TextStyle(
+                      fontSize: 15.0, fontWeight:FontWeight.bold
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 

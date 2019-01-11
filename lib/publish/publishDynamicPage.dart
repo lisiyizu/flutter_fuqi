@@ -31,17 +31,21 @@ class _publishDynamicPageSate extends State<publishDynamicPage> {
     }
 
     try{
-
+      showDialog(context: ctx,child: tool.getProgressIndicator(info: "数据上传中..."));
       var response = await dioTool.dio.post('${Constants.host}/app/writeDynamic/',data:{'content':content});
+      Navigator.of(context).pop();
       Navigator.of(context).pop();
       tool.showToast("发布成功");
       Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
         return UserDetail(id: tool.myUserData['id']);
       }));
     }on DioError catch (e){
-      print(e.response.statusCode);
-      tool.showToast("网络异常");
-      Navigator.of(context).pushNamed('/login');
+      if(e.response != null && e.response.statusCode == 401){
+        tool.showToast("登录信息已失效");
+        Navigator.of(context).pushNamed('/login');
+      }else{
+        tool.showToast("网络异常");
+      }
     }
   }
 

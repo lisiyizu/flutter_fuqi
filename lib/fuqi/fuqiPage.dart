@@ -53,7 +53,6 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
   }
 
   bool _recoverData(bool bSet){
-
     if(tool.userPageDatas[_controller.index] != null && tool.userPageDatas[_controller.index].containsKey('data') &&
         tool.userPageDatas[_controller.index]['data'].length != 0){
       if(bSet){
@@ -213,10 +212,7 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     // TODO: implement build
     if (userDatas.length == 0) {
-      return new Center(
-        // CircularProgressIndicator是一个圆形的Loading进度条
-        child: new CircularProgressIndicator(),
-      );
+      return tool.getProgressIndicator();
     }else {
       return Scaffold(
         appBar: AppBar(
