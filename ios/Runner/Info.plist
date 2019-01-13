@@ -17,17 +17,21 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSMicrophoneUsageDescription</key>
-	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>NSCameraUsageDescription</string>
+    <string>image picker1</string>
+	<key>NSCameraUsageDescription</key>
+	<string>image picker2</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>image picker3</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>saveErweima</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -47,18 +51,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<string>NSPhotoLibraryAddUsageDescription</string>
-
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>saveErweima</string>
-
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>image picker1</string>
-
-	<key>NSCameraUsageDescription</key>
-	<string>image picker2</string>
-
-	<key>NSMicrophoneUsageDescription</key>
-	<string>image picker3</string>
-
 </dict>
 </plist>
