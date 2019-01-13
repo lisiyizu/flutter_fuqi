@@ -180,7 +180,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     String msg;
     var temp;
     List<String> tempImage=[];
-    String url = "${Constants.host}/app/userDetail/${widget.id}";
+    String url = "${Constants.host}/app/userDetail/${widget.id}/";
     print(url);
     try {
       response = await dioTool.dio.get(url);
