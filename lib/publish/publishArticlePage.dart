@@ -215,7 +215,7 @@ class _publishArticlePageState extends State<publishArticlePage> {
 
       formData = new FormData.from({
       "title": title,
-      "brief": title,
+      "brief": "夫妻之家",
       'content':content,
       'category_name':widget.category,
       'head_img':UploadFileInfo(fileList[0],filename),
@@ -226,7 +226,7 @@ class _publishArticlePageState extends State<publishArticlePage> {
 
       formData = new FormData.from({
         "title": title,
-        "brief": title,
+        "brief": "夫妻之家",
         'content':content,
         'category_name':widget.category,
         'head_img':UploadFileInfo(fileList[0],filename),
@@ -239,7 +239,7 @@ class _publishArticlePageState extends State<publishArticlePage> {
 
       formData = new FormData.from({
         "title": title,
-        "brief": title,
+        "brief": "夫妻之家",
         'content':content,
         'category_name':widget.category,
         'head_img':UploadFileInfo(fileList[0],filename),

@@ -42,9 +42,15 @@ class tool {
   static init(BuildContext context){
     //设置轮播图高度
     Constants.bannerImageHeight = MediaQuery.of(context).size.height ;
-    Constants.bannerImageHeight = Constants.bannerImageHeight > 900 ? 300:Constants.bannerImageHeight/3;
+    Constants.bannerImageHeight = Constants.bannerImageHeight*0.4;
+    if(Constants.bannerImageHeight>400){
+      Constants.bannerImageHeight = 400;
+    }
+
     //获取登录者的信息
-    getMyUserInfo(context: context);
+    tool.getMyUserInfo(context: context);
+    //检查版本
+    tool.checkSysVersion(context);
   }
 
   static getMyUserInfo({id:-1,BuildContext context}) async {

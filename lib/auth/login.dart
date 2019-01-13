@@ -30,8 +30,7 @@ class _LoginPageState extends State<LoginPage>{
       });
       tool.showToast("登录成功");
       dioTool.setHeadToken(response.data['token']);
-      tool.getMyUserInfo(context: context, id: response.data['id']);
-      tool.checkSysVersion(context);
+      tool.init(context);
       await tool.prefs.setString('token', response.data['token']);
       await tool.prefs.setInt('id', response.data['id']);
     } on DioError catch (e) {
