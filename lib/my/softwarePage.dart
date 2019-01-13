@@ -18,8 +18,8 @@ class softwarePage extends StatefulWidget{
 }
 
 class _softwarePageState extends State<softwarePage>{
-  static String _version = tool.version;
-  String _result = "当前软件版本为:"+_version.toString();
+  static String _version = Constants.version;
+  String _result = "当前软件版本为:"+_version;
 
   @override
   void initState() {
@@ -33,6 +33,7 @@ class _softwarePageState extends State<softwarePage>{
     var response;
     try{
       response = await dioTool.dio.get("${Constants.host}/app/version/");
+      _version = response.data[0]['version'];
       if(_version != Constants.version){
         Alert(
           context: context,

@@ -40,13 +40,14 @@ class _firstPageState extends State<firstPage>{
       try{
         var response = await dioTool.dio.post('${Constants.host}/jwt-verify/',data:{'token': token});
         print("token有效,无需登录");
+        tool.showToast("密码有效,无需登录");
         dioTool.setHeadToken(token);
         //做一些初始化操作
         tool.init(context);
         Navigator.of(context).pushNamed('/home');
       }on DioError catch (e) {
-        if(e.response.statusCode == 400){
-           tool.showToast("token已过期,需要重新登录");
+        if(e.response != null && e.response.statusCode == 400){
+           tool.showToast("密码已过期,需要重新登录");
         }else{
            tool.showToast("机器维护中,请稍后再登录");
         }

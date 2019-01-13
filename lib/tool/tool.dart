@@ -16,7 +16,6 @@ class tool {
 
   static var myUserData;
 
-  static String version = "0";
   static String location = '全国';
 
   //屏幕高度
@@ -72,6 +71,7 @@ class tool {
   //检查系统版本
   static checkSysVersion(BuildContext context) async {
     var response;
+    String version;
     try{
       response = await dioTool.dio.get("${Constants.host}/app/version/");
       version = response.data[0]['version'];
