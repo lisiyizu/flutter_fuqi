@@ -194,7 +194,7 @@ class _publishImagePageState extends State<publishImagePage> {
       }));
     }on DioError catch (e){
       if(e.response != null && e.response.statusCode == 401){
-        tool.showToast("登录信息已失效");
+        tool.showToast("密码已过期,请重新登录");
         Navigator.of(context).pushNamed('/login');
       }else{
         tool.showToast("网络异常");

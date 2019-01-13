@@ -47,7 +47,7 @@ class _firstPageState extends State<firstPage>{
         Navigator.of(context).pushNamed('/home');
       }on DioError catch (e) {
         if(e.response != null && e.response.statusCode == 400){
-           tool.showToast("密码已过期,需要重新登录");
+           tool.showToast("密码已过期,请重新登录");
         }else{
            tool.showToast("机器维护中,请稍后再登录");
         }

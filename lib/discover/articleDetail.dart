@@ -159,10 +159,11 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
         _articleTabContent = _getArticleTabContent();
       });
     }on DioError catch (e){
-      print(e.response.statusCode);
-      tool.showToast("网络异常");
-      if (e.response.statusCode == 401){
+      if (e.response != null && e.response.statusCode == 401){
+        tool.showToast("密码已过期,请重新登录");
         Navigator.of(context).pushNamed('/login');
+      }else{
+        tool.showToast("网络异常");
       }
     }
   }
@@ -202,7 +203,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
       await dioTool.dio.get("${Constants.host}/app/searchArticles/${widget.mData.id}/");
     }on DioError catch (e){
       if(e.response != null && e.response.statusCode == 401){
-        tool.showToast("登录信息已失效");
+        tool.showToast("密码已过期,请重新登录");
         Navigator.of(context).pushNamed('/login');
       }else{
         tool.showToast("网络异常");

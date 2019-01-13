@@ -69,12 +69,12 @@ class _messagePageState extends State<messagePage> {
         tool.converstation = _mConversation;
       }
     }on DioError catch(e) {
-      if (e.response.statusCode == 404){
+      if (e.response != null && e.response.statusCode == 404){
         tool.showToast("已显示全部数据");
-      }else if(e.response.statusCode == 401){
+      }else if(e.response != null && e.response.statusCode == 401){
         //登录信息已经失效
         Navigator.of(context).pushNamed('/login');
-        tool.showToast("登录信息已失效");
+        tool.showToast("密码已过期,请重新登录");
       } else{
         tool.showToast("网络不佳,请稍候再试");
       }
