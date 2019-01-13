@@ -35,14 +35,15 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
 
   void _setImagePages(){
     _urls.add(widget.mData.head_img);
-    if (widget.mData.head_img2 != 'http://www.fuqi.site/media/uploads/couple.jpg'){
+    if (widget.mData.head_img2.contains('media/uploads/couple.jpg') == false){
       _urls.add(widget.mData.head_img2);
     }
-    if (widget.mData.head_img3 != 'http://www.fuqi.site/media/uploads/couple.jpg'){
+    if (widget.mData.head_img3.contains('media/uploads/couple.jpg') == false){
       _urls.add(widget.mData.head_img3);
     }
 
     _urls.forEach((String url) {
+
       Widget avator = Image.network(
         url,
         fit: BoxFit.contain,
