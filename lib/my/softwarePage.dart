@@ -18,7 +18,7 @@ class softwarePage extends StatefulWidget{
 }
 
 class _softwarePageState extends State<softwarePage>{
-  static int _version = tool.version;
+  static String _version = tool.version;
   String _result = "当前软件版本为:"+_version.toString();
 
   @override
@@ -66,7 +66,7 @@ class _softwarePageState extends State<softwarePage>{
         ).show();
       }else{
         setState(() {
-          _result = "当前版本已经是最新版本,无需更新";
+          _result = "当前版本已经是最新版本:$_version,无需更新";
         });
       }
     }on DioError catch (e) {

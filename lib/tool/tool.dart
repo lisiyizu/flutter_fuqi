@@ -16,7 +16,7 @@ class tool {
 
   static var myUserData;
 
-  static int version = 0;
+  static String version = "0";
   static String location = '全国';
 
   //屏幕高度
