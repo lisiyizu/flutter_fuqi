@@ -66,7 +66,7 @@ class advertPage extends StatelessWidget{
                   Image.asset("assets/images/download.png",width: 200,height: 200,),
                   Container(
                     padding: EdgeInsets.all(20.0),
-                    child:Text('免费的素质夫妻交友平台,拒绝嘴high,欢迎真实夫妻',textAlign:TextAlign.center,style: TextStyle(
+                    child:Text('免费的素质夫妻交友APP,拒绝嘴high,欢迎真实夫妻',textAlign:TextAlign.center,style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
                         fontSize: 20.0
