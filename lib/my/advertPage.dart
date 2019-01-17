@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:flutter_fuqi/constants.dart';
 
 
 class advertPage extends StatelessWidget{
@@ -56,7 +57,7 @@ class advertPage extends StatelessWidget{
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(20.0),
-                    child:Text('邀请加入夫妻之家(微信,QQ扫码已屏蔽,请使用浏览器扫码)',textAlign:TextAlign.center,style: TextStyle(
+                    child:Text('邀请加入夫妻之家(微信QQ扫码已屏蔽,请使用浏览器扫码)',textAlign:TextAlign.center,style: TextStyle(
                         color: Colors.orange,
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0
@@ -65,7 +66,16 @@ class advertPage extends StatelessWidget{
                   ),
                   Image.asset("assets/images/download.png",width: 200,height: 200,),
                   Container(
-                    padding: EdgeInsets.all(20.0),
+                    padding: EdgeInsets.only(top: 5.0),
+                    child:Text('或打开www.fuqi.site/down',textAlign:TextAlign.center,style: TextStyle(
+                        color: Colors.yellow,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25.0
+                    ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(top:20.0,bottom: 5.0),
                     child:Text('免费的素质夫妻交友APP,拒绝嘴high,欢迎真实夫妻',textAlign:TextAlign.center,style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
@@ -74,7 +84,6 @@ class advertPage extends StatelessWidget{
                     ),
                   ),
                   Container(
-                      margin: EdgeInsets.only(top: 20),
                       padding: EdgeInsets.only(left: 5.0),
                       child: Text('专属邀请码:${tool.getMyAdvertCode()}',style: TextStyle(
                         color: Colors.red,
