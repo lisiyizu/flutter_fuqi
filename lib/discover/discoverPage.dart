@@ -6,11 +6,14 @@ import 'package:flutter_fuqi/discover/articleItem.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:flutter_fuqi/modal/articleData.dart';
+import 'package:flutter_fuqi/modal/video.dart';
+import 'package:flutter_fuqi/discover/videoItem.dart';
 
 
 
 final List<Tab> _myTabs = <Tab>[
   Tab(text: '认证夫妻'),
+  Tab(text: '91视频'),
   Tab(text: '论坛'),
   Tab(text: 'QQ群'),
   Tab(text: '我的文章'),
@@ -18,6 +21,7 @@ final List<Tab> _myTabs = <Tab>[
 
 List<String> _allPages=[
   "identify",
+  "91",
   "bbs",
   "qq",
   'my',
@@ -41,6 +45,7 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
   TabController _controller;
   String _selectedTag;
   List<articleData> _articleDatas = [];
+  List<Video> _videoDatas = [];
   int page = 1;
   int pageSize = 10;
   @override
@@ -67,12 +72,22 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
         tool.articlePageDatas[_controller.index]['data'].length != 0){
       if(bSet){
         setState(() {
-          _articleDatas = tool.articlePageDatas[_controller.index]['data'];
-          page = tool.articlePageDatas[_controller.index]['page'];
+          if(_selectedTag == "91"){
+            _videoDatas = tool.articlePageDatas[_controller.index]['data'];
+            page = tool.articlePageDatas[_controller.index]['page'];
+          }else{
+            _articleDatas = tool.articlePageDatas[_controller.index]['data'];
+            page = tool.articlePageDatas[_controller.index]['page'];
+          }
         });
       }else{
-        _articleDatas = tool.articlePageDatas[_controller.index]['data'];
-        page = tool.articlePageDatas[_controller.index]['page'];
+        if(_selectedTag == "91"){
+          _videoDatas = tool.articlePageDatas[_controller.index]['data'];
+          page = tool.articlePageDatas[_controller.index]['page'];
+        }else{
+          _articleDatas = tool.articlePageDatas[_controller.index]['data'];
+          page = tool.articlePageDatas[_controller.index]['page'];
+        }
       }
       return true;
     }else{
@@ -86,11 +101,59 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
       _selectedTag = _allPages[_controller.index];
       //已经获取过数据时不再继续获取,只在下拉刷新的时候获取
       if(!_recoverData(true)){
-        _getArticleInfos(false);
+        if(_selectedTag == '91'){
+          _get91Video(false);
+        }else{
+          _getArticleInfos(false);
+        }
       }
     }
   }
 
+  _get91Video(bool bGetMore) async {
+    //根据tag不一样获取不一样的数据功能待调整
+    Response response;
+    String url;
+    if(!bGetMore){
+      page = 1;
+    }
+
+    //不是获取更多数据那么就从第一页开始
+    url = "${Constants.host}/app/searchVideos/?page=$page&page_size=$pageSize";
+    try {
+      response = await dioTool.dio.get(url);
+    }on DioError catch(e) {
+      if (e.response != null && e.response.statusCode == 404){
+        tool.showToast("已显示全部数据");
+      }else if(e.response != null && e.response.statusCode == 401){
+        //登录信息已经失效
+        Navigator.of(context).pushNamed('/login');
+        tool.showToast("密码已过期,请重新登录");
+      } else{
+        tool.showToast("网络不佳,请稍候再试");
+      }
+      return;
+    }
+
+    List<Video> videoData=[];
+    var result = response.data['results'];
+    for(var item in result){
+      videoData.add(Video.getVideoData(item));
+    }
+    if (this.mounted){
+      setState(() {
+        // 是否是加载更多数据
+        if(!bGetMore){
+          _videoDatas = videoData;
+        }else{
+          _videoDatas.addAll(videoData);
+        }
+        page += 1;
+        tool.articlePageDatas[_controller.index]['page'] = page;
+        tool.articlePageDatas[_controller.index]['data'] = _videoDatas;
+      });
+    }
+  }
   _getArticleInfos(bool bGetMore) async {
     //根据tag不一样获取不一样的数据功能待调整
     Response response;
@@ -144,13 +207,21 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
   Future<Null> onHeaderRefresh() {
     return new Future.delayed(new Duration(seconds: 2), () {
       //上拉刷新的时候永远找第一页
-      _getArticleInfos(false);
+      if(_selectedTag == '91'){
+        _get91Video(false);
+      }else{
+        _getArticleInfos(false);
+      }
     });
   }
 
   Future<Null> onFooterRefresh() {
     return new Future.delayed(new Duration(seconds: 2), () {
-      _getArticleInfos(true);
+      if(_selectedTag == '91'){
+        _get91Video(true);
+      }else{
+        _getArticleInfos(true);
+      }
     });
   }
 
@@ -166,9 +237,13 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
               physics: physics,
               controller: controller,
               itemBuilder: (BuildContext context,int index){
-                return articleItem(tag:_selectedTag,mData:_articleDatas[index]);
+                if(_selectedTag == "91"){
+                  return videoItem(tag:_selectedTag,mData:_videoDatas[index]);
+                }else{
+                  return articleItem(tag:_selectedTag,mData:_articleDatas[index]);
+                }
               },
-              itemCount: _articleDatas.length,
+              itemCount: _selectedTag == "91" ? _videoDatas.length:_articleDatas.length,
             ));
       },
     );

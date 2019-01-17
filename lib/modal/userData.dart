@@ -1,8 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_fuqi/constants.dart';
-
-import 'package:flutter_fuqi/tool/tool.dart';
-import 'package:flutter_fuqi/constants.dart';
 
 class UserData {
   final int id;

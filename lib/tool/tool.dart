@@ -192,6 +192,8 @@ class tool {
       return bSelf == true ? 'send_user':'receive_user';
     }
   }
+
+
 }
 
 
