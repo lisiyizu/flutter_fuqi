@@ -57,7 +57,6 @@ class _LoginPageState extends State<LoginPage>{
   _toRegister() async {
     //先检查是否注册过
     String token = await tool.prefs.get('token');
-    token = null;
     if(token != null){
       Alert(
         context: context,
