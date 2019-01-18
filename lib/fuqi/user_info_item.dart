@@ -62,7 +62,7 @@ class UserInfoItem extends StatelessWidget {
                   children: <Widget>[
                     Text("昵称:${userData.name},年纪:${userData.age},人气:${userData.read_count}",style: AppStyles.FuqiInfoStyle),
                     Text("性别:${userData.sex},寻找:${userData.target}",style: AppStyles.FuqiInfoStyle),
-                    Text("地点:${userData.province},${userData.city}",style: AppStyles.FuqiInfoStyle),
+                    Text("地点:${userData.province},${userData.city},夫妻币:${userData.free_count}",style: AppStyles.FuqiInfoStyle),
                     Text("权限:$profile$identifyText",style: ProfileTextStyle),
                     Text("简介:${userData.desc}",style:AppStyles.FuqiInfoStyle),
                   ],
