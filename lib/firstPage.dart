@@ -44,7 +44,6 @@ class _firstPageState extends State<firstPage>{
         dioTool.setHeadToken(token);
         //做一些初始化操作
         tool.init(context);
-        Navigator.of(context).pushNamed('/home');
       }on DioError catch (e) {
         if(e.response != null && e.response.statusCode == 400){
            tool.showToast("密码已过期,请重新登录");

@@ -78,15 +78,36 @@ class tool {
   static checkSysVersion(BuildContext context) async {
     var response;
     String version;
+    String info;
+    bool bForce;
     try{
       response = await dioTool.dio.get("${Constants.host}/app/version/");
       version = response.data[0]['version'];
-      if(version != Constants.version){
+      info = response.data[0]['info'];
+      bForce = response.data[0]['bForce'];
+      //强制更新
+      if(bForce && version != Constants.version){
+        Alert(
+          context: context,
+          type: AlertType.warning,
+          title: "当前版本已不可用,必须更新",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "立即更新",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.of(context).pushNamed('/update'),
+              color: Color.fromRGBO(0, 179, 134, 1.0),
+            ),
+          ],
+        ).show();
+      }else if(version != Constants.version){
         Alert(
           context: context,
           type: AlertType.warning,
           title: "软件版本需要更新",
-          desc: "修复软件问题,增加新功能",
+          desc: info,
           buttons: [
             DialogButton(
               child: Text(
