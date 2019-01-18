@@ -110,6 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
         UserRegisterData.province = _province;
       }
 
+      showDialog(context: context,child: tool.getProgressIndicator(info: "数据上传中..."));
       response = await dioTool.dio.post('${Constants.host}/app/useRegister/', data:{
             'name':UserRegisterData.name,
             'username':UserRegisterData.userName,
@@ -123,6 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
             'qq':UserRegisterData.qq,
             'weixin':UserRegisterData.weiXin,
             'code':tool.changeToID(UserRegisterData.inviteCode)});
+      Navigator.of(context).pop();
       tool.showToast("注册成功,请返回登录");
       Navigator.of(context).pushNamed('/login');
     } on DioError catch (e) {
