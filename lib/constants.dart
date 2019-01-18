@@ -83,6 +83,7 @@ class Constants {
   static const downloadUrl = 'https://www.fuqi.site/down ';//当前系统版本
 }
 
+
 List<String> Provinces = [
   "全国",
   "北京" ,

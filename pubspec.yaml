@@ -21,7 +21,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^1.0.9
   flutter_refresh: ^0.0.2
-  fluttertoast: ^2.2.2 #最新版本的插件有android兼任问题,暂不更新
+  fluttertoast: 2.2.2 #最新版本的插件有android兼任问题,暂不更新
   shared_preferences: ^0.4.3
   image_picker: ^0.4.10
   rflutter_alert: ^1.0.2
