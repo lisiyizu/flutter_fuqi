@@ -196,18 +196,16 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     }on DioError catch(e) {
       if(e.response.statusCode == 401){
         msg = "登录信息已失效,请重新登录";
-      }else{
+        tool.showToast(msg);
+        Navigator.of(context).pushNamed('/login');
+      }else if(e.response.statusCode == 404){
+        msg = "您搜索的用户不存在或已注销";
+        tool.showLongToast(msg, 3);
+        Navigator.of(context).pop();
+      } else{
         msg = "网络不佳,请稍候再试";
+        tool.showToast(msg);
       }
-      Fluttertoast.showToast(
-          msg: msg,
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIos: 1,
-          backgroundColor: Colors.white,
-          textColor: Colors.black
-      );
-      Navigator.of(context).pushNamed('/login');
       return;
     }
     setState(() {

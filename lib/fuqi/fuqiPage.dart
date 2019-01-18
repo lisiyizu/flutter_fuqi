@@ -7,6 +7,8 @@ import 'package:flutter_fuqi/fuqi/user_info_item.dart';
 import 'package:flutter_fuqi/fuqi/locate.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:flutter_fuqi/dio/dio.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_fuqi/fuqi/user_detail.dart';
 
 
 
@@ -38,6 +40,7 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
   TabController _controller;
   String _selectedTag;
   List<UserData> userDatas=[];
+  TextEditingController _textController = new TextEditingController();
   int page = 1;
   int pageSize = 10;
   @override
@@ -208,6 +211,48 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
     }
   }
 
+  _searchUserDetail(String id) {
+    //先做检查
+    if(id==null || id.trim().length == 0 || id.contains('139') == false){
+      tool.showLongToast("您输入的ID格式错误", 3);
+      return;
+    }
+    id = id.substring(0,id.length-3);
+
+    Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
+      return UserDetail(id:num.parse(id));
+    }));
+
+  }
+  _searchUserById(BuildContext context) async {
+    Alert(
+        context: context,
+        title: "根据ID查找用户",
+        content: Column(
+          children: <Widget>[
+            TextField(
+              decoration: InputDecoration(
+                  hintText:"请输入ID号"
+              ),
+              controller: _textController,
+            ),
+          ],
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () {
+              Navigator.pop(context);
+              _searchUserDetail(_textController.text);
+              _textController.clear();
+            },
+            child: Text(
+              "查找",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+          )
+        ]).show();
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -218,9 +263,21 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
         appBar: AppBar(
           automaticallyImplyLeading: false,//去掉返回箭头
           elevation: 0.0,
-          centerTitle:true,
           title: Text('交友'),
+          centerTitle: true,
           actions: <Widget>[
+            Container(
+              padding: EdgeInsets.only(right: 25.0),
+              child: GestureDetector(
+                  onTap: (){
+                    _searchUserById(context);
+                  },
+                  child: Row(
+                      children: <Widget>[
+                        Icon(IconData(0xe620, fontFamily: Constants.IconFontFamily),size: 18,),
+                      ])),
+
+            ),
             Container(
               padding: EdgeInsets.only(right: 25.0),
               child: GestureDetector(
@@ -249,6 +306,7 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
           controller: _controller,
           children: _allPages.map((tag) => buildTabView(tag)).toList(),
         ),
+
       );
     }
   }

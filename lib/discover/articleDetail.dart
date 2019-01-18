@@ -177,8 +177,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
           children: <Widget>[
             TextField(
               decoration: InputDecoration(
-                icon: Icon(Icons.comment),
-                labelText: '内容',
+                hintText: '请输入评论内容',
               ),
               controller: _textController,
             ),

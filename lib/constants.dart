@@ -84,6 +84,7 @@ class Constants {
 }
 
 List<String> Provinces = [
+  "全国",
   "北京" ,
   "上海",
   "江苏",
