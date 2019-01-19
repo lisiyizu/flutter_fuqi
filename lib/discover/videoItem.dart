@@ -32,6 +32,7 @@ class videoItem extends StatelessWidget{
         Navigator.of(context).pop();
         Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
           return videoPlayer(mData:mData);
+          //return videoPlayer();
         }));
       }else{
         Navigator.of(context).pop();
@@ -73,16 +74,6 @@ class videoItem extends StatelessWidget{
               buttons: [
                 DialogButton(
                   child: Text(
-                    "确定",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  onPressed: () {
-                    _reduceMyFreeCount(context);
-                  },
-                  color: Color.fromRGBO(0, 179, 134, 1.0),
-                ),
-                DialogButton(
-                  child: Text(
                     "取消",
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
@@ -91,7 +82,17 @@ class videoItem extends StatelessWidget{
                     Color.fromRGBO(116, 116, 191, 1.0),
                     Color.fromRGBO(52, 138, 199, 1.0)
                   ]),
-                )
+                ),
+                DialogButton(
+                  child: Text(
+                    "确定",
+                    style: TextStyle(color: Colors.white, fontSize: 20),
+                  ),
+                  onPressed: () {
+                    _reduceMyFreeCount(context);
+                  },
+                  color: Color.fromRGBO(0, 179, 134, 1.0),
+                ),
               ],
             ).show();
           },

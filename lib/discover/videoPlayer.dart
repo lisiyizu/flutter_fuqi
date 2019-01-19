@@ -24,6 +24,7 @@ class _videoPlayerState extends State<videoPlayer> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print(widget.mData.url);
     _controller = VideoPlayerController.network(widget.mData.url);
   }
 
@@ -58,8 +59,5 @@ class _videoPlayerState extends State<videoPlayer> {
         )
     );
   }
-
-
-
 
 }

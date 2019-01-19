@@ -63,7 +63,7 @@ class tool {
       myID = id;
     }
     try{
-      String url = "${Constants.host}/app/userDetail/$myID";
+      String url = "${Constants.host}/app/userDetail/$myID/";
       response = await dioTool.dio.get(url);
       myUserData = response.data;
       print("my id:${myUserData['id']},my name:${myUserData['name']}");
@@ -111,14 +111,6 @@ class tool {
           buttons: [
             DialogButton(
               child: Text(
-                "立即更新",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () => Navigator.of(context).pushNamed('/update'),
-              color: Color.fromRGBO(0, 179, 134, 1.0),
-            ),
-            DialogButton(
-              child: Text(
                 "暂不更新",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
@@ -127,6 +119,14 @@ class tool {
                 Color.fromRGBO(116, 116, 191, 1.0),
                 Color.fromRGBO(52, 138, 199, 1.0)
               ]),
+            ),
+            DialogButton(
+              child: Text(
+                "立即更新",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.of(context).pushNamed('/update'),
+              color: Color.fromRGBO(0, 179, 134, 1.0),
             )
           ],
         ).show();
