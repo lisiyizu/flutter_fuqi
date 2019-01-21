@@ -207,6 +207,10 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
       setState(() {
         tool.location = result;
       });
+      //地点切换后,其他数据也要销毁,否则不会更新
+      for(int i=0;i< tool.userPageDatas.length;i++){
+        tool.userPageDatas[i].clear();
+      }
       _getUserInfos(false);
     }
   }
