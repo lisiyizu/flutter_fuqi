@@ -132,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
       if (e.response.statusCode == 400) {
         if (e.response.data['non_field_errors'] != null) {
           msg = "您之前在网站或APP上注册过,请直接登录";
-          Navigator.of(context).pushNamed('/login');
+          Navigator.of(context).pop();
         } else {
           msg = '用户名已存在,请修改用户名';
         }
