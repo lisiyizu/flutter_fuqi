@@ -126,25 +126,19 @@ class _SignUpPageState extends State<SignUpPage> {
             'code':tool.changeToID(UserRegisterData.inviteCode)});
       Navigator.of(context).pop();
       tool.showToast("注册成功,请返回登录");
-      Navigator.of(context).pushNamed('/login');
     } on DioError catch (e) {
       if (e.response.statusCode == 400) {
         if (e.response.data['non_field_errors'] != null){
-          msg = "您已经注册过了,请直接登录";
+          msg = "您之前在网站或APP上注册过,请直接登录";
+          Navigator.of(context).pushNamed('/login');
         }else{
-          msg = '用户名已存在,请修改';
+          msg = '用户名已存在,请修改用户名';
         }
       } else {
         msg = "注册失败,请稍后再试";
       }
       msg+='错误编码:${e.response.statusCode}';
-      showDialog(
-          context: context,
-          builder: (context) =>
-              AlertDialog(
-                title: Text(msg),
-              ));
-    }
+      tool.showLongToast(msg, 5);
   }
 
 
