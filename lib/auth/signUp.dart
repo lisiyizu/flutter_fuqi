@@ -250,7 +250,7 @@ class _SignUpPageState extends State<SignUpPage> {
     // TODO: implement build
     return Scaffold(
         appBar: AppBar(
-          title: Text("夫妻之家"),
+          title: Text("欢迎加入夫妻之家"),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
@@ -259,7 +259,7 @@ class _SignUpPageState extends State<SignUpPage> {
               Container(
                 padding: EdgeInsets.only(top: 20.0),
                 alignment: Alignment.center,
-                child: Text("欢迎加入", style: TextStyle(
+                child: Text("提示:已有网站账户请直接登陆", style: TextStyle(
                     fontSize: 20.0, fontWeight: FontWeight.bold),),
 
               ),
@@ -580,6 +580,22 @@ class _SignUpPageState extends State<SignUpPage> {
 
                           ),
                         ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(top:15.0,left: 20.0),
+                      alignment: Alignment(1.0, 0),
+                      child: InkWell(
+                        onTap: (){
+                          Navigator.of(context).pushNamed('/kefu');
+                        },
+                        child: Text("注册有问题",
+                          style: TextStyle(
+                              color: Colors.green,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline
+                          ),),
                       ),
                     ),
                     SizedBox(height: 40.0),
