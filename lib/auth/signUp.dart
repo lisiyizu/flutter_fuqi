@@ -97,50 +97,52 @@ class _SignUpPageState extends State<SignUpPage> {
     String msg;
     try {
       //使用默认的时候,由于没有变化,导致没有赋值
-      if (UserRegisterData.sex == null){
+      if (UserRegisterData.sex == null) {
         UserRegisterData.sex = _sex;
       }
-      if (UserRegisterData.age == null){
+      if (UserRegisterData.age == null) {
         UserRegisterData.age = num.parse(_age);
       }
-      if (UserRegisterData.target == null){
+      if (UserRegisterData.target == null) {
         UserRegisterData.target = _target;
       }
-      if (UserRegisterData.province == null){
+      if (UserRegisterData.province == null) {
         UserRegisterData.province = _province;
       }
 
-      showDialog(context: context,child: tool.getProgressIndicator(info: "数据上传中..."));
-      response = await dioTool.dio.post('${Constants.host}/app/useRegister/', data:{
-            'name':UserRegisterData.name,
-            'username':UserRegisterData.userName,
-            'password':UserRegisterData.userPassword,
-            'desc':UserRegisterData.desc,
-            'sex':UserRegisterData.sex,
-            'target':UserRegisterData.target,
-            'province':UserRegisterData.province,
-            'city':UserRegisterData.city,
-            'age':UserRegisterData.age,
-            'qq':UserRegisterData.qq,
-            'weixin':UserRegisterData.weiXin,
-            'code':tool.changeToID(UserRegisterData.inviteCode)});
+      showDialog(
+          context: context, child: tool.getProgressIndicator(info: "数据上传中..."));
+      response =
+      await dioTool.dio.post('${Constants.host}/app/useRegister/', data: {
+        'name': UserRegisterData.name,
+        'username': UserRegisterData.userName,
+        'password': UserRegisterData.userPassword,
+        'desc': UserRegisterData.desc,
+        'sex': UserRegisterData.sex,
+        'target': UserRegisterData.target,
+        'province': UserRegisterData.province,
+        'city': UserRegisterData.city,
+        'age': UserRegisterData.age,
+        'qq': UserRegisterData.qq,
+        'weixin': UserRegisterData.weiXin,
+        'code': tool.changeToID(UserRegisterData.inviteCode)});
       Navigator.of(context).pop();
       tool.showToast("注册成功,请返回登录");
     } on DioError catch (e) {
       if (e.response.statusCode == 400) {
-        if (e.response.data['non_field_errors'] != null){
+        if (e.response.data['non_field_errors'] != null) {
           msg = "您之前在网站或APP上注册过,请直接登录";
           Navigator.of(context).pushNamed('/login');
-        }else{
+        } else {
           msg = '用户名已存在,请修改用户名';
         }
       } else {
         msg = "注册失败,请稍后再试";
       }
-      msg+='错误编码:${e.response.statusCode}';
+      msg += ',错误编码:${e.response.statusCode}';
       tool.showLongToast(msg, 5);
+    }
   }
-
 
   _checkRegisterData() {
     if (UserRegisterData.name == null || UserRegisterData.name
