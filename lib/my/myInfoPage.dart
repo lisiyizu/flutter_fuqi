@@ -26,13 +26,24 @@ class _myInfoPageState extends State<myInfoPage> {
   static const double ARROW_ICON_WIDTH = 16.0;
   var titleTextStyle = new TextStyle(fontSize: 16.0);
   var firstTextStyle = new TextStyle(fontSize: 16.0,color: Colors.red,fontWeight: FontWeight.bold);
+  var _body;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(tool.myUserData != null){
+      _body  = new ListView.builder(
+        itemCount: titles.length * 2,
+        itemBuilder: (context, i) => _renderRow(i),
+      );
+    }else{
+      _body = tool.getProgressIndicator();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    var listView = new ListView.builder(
-      itemCount: titles.length * 2,
-      itemBuilder: (context, i) => _renderRow(i),
-    );
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,//去掉返回箭头
@@ -40,7 +51,7 @@ class _myInfoPageState extends State<myInfoPage> {
         centerTitle:true,
         title: Text('我的详情'),
       ),
-      body: listView,
+      body: _body,
     );
   }
   _handleListItemClick(String title){
