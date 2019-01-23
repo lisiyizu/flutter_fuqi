@@ -38,6 +38,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
          return;
       }
       try{
+        tool.bGetNewConversation = true;
         var response = await dioTool.dio.get('${Constants.host}/app/readConverstation/?id=${userDetail['id']}');
         if(response.data['count'] == 0){
           print('新建聊天');

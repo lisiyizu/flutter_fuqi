@@ -21,6 +21,8 @@ class tool {
   //屏幕高度
   static double screenHeight = 0.0;
 
+  static bool bGetNewConversation = true;
+
   //用户信息
   static List<Map> userPageDatas=[
     Map(),

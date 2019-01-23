@@ -54,12 +54,14 @@ class _myInfoPageState extends State<myInfoPage> {
       body: _body,
     );
   }
-  _handleListItemClick(String title){
+  _handleListItemClick(String title) async {
     if(title == '我的资料'){
       Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
         return UserDetail(id:tool.myUserData['id']);
       }));
     }else if(title == '我的钱包'){
+      //实时获取数据
+      await tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
       Alert(
         context: context,
         type: AlertType.info,

@@ -53,9 +53,11 @@ class _chatPageState extends State<chatPage> {
   _getConversation() async {
     try{
       var response = await dioTool.dio.get('${Constants.host}/app/readConverstation/${widget.originConversation['id']}/');
-      setState(() {
-        widget.originConversation = response.data;
-      });
+      if(this.mounted){
+        setState(() {
+          widget.originConversation = response.data;
+        });
+      }
       //_scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 1000),curve:Curves.ease);
     }on DioError catch(e) {
       if(e.response.statusCode == 401){

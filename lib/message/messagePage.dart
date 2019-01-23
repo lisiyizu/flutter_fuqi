@@ -25,11 +25,11 @@ class _messagePageState extends State<messagePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(tool.converstation == null){
-      _getConversations();
+    if(tool.bGetNewConversation){
+      _getConversations();//每次都获取最新数据
     }else{
-      _mConversation = tool.converstation;
       _conversations = tool.converstation;
+      _mConversation = Conversation.parseConversations(tool.converstation);
     }
   }
 
@@ -40,34 +40,11 @@ class _messagePageState extends State<messagePage> {
       _mConversation=[];
       if(this.mounted){
         setState(() {
-          for(int i=0;i<_conversations.length;i++){
-            var des='';
-            var updateAt='';
-            if(_conversations[i]['converstation_message'].length > 0){
-              des = _conversations[i]['converstation_message'][0]['content'];
-              updateAt = tool.processTime(_conversations[i]['converstation_message'][0]['date']);
-            }
-            if(_conversations[i]['receive_user']['id'] != tool.myUserData['id']){
-              _mConversation.add(Conversation(
-                  title: _conversations[i]['receive_user']['name'],
-                  avatar:_conversations[i]['receive_user']['head_img'],
-                  des:des,
-                  updateAt:updateAt,
-                  unreadMsgCount: _conversations[i]['unReadCount_send']
-              ));
-            }else{
-              _mConversation.add(Conversation(
-                  title: _conversations[i]['send_user']['name'],
-                  avatar:_conversations[i]['send_user']['head_img'],
-                  des:des,
-                  updateAt:updateAt,
-                  unreadMsgCount: _conversations[i]['unReadCount_receive']
-              ));
-            }
-          }
+          _mConversation = Conversation.parseConversations(_conversations);
         });
-        tool.converstation = _mConversation;
+        tool.converstation = _conversations;
       }
+      tool.bGetNewConversation = false;//不再获取新的conversation
     }on DioError catch(e) {
       if (e.response != null && e.response.statusCode == 404){
         tool.showToast("已显示全部数据");
