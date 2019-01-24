@@ -21,7 +21,7 @@ class videoItem extends StatelessWidget{
     int free_count;
     try {
       //实时获取数据
-      tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
+      await tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
       //权限检查
       if(tool.myUserData['free_count']>=10){
         free_count = tool.myUserData['free_count']-10;
