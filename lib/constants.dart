@@ -73,14 +73,14 @@ class Constants {
   static const IndexLetterBoxSize = 114.0;
   static const IndexLetterBoxRadius = 4.0;
   static const FullWidthIconButtonIconSize = 24.0;
-  static const host='https://fqzj.site';
+  static const host='https://www.fqzj.site';
   static const defaultImage = 'assets/images/couple.jpg';
   static const qq = '2123108929';
   static const weixin = 'fuqi9970';
   static const gongzhonghao = '福气之家';
   static double bannerImageHeight = 150.0; //轮播图高度
   static const String version = "1.1";//当前系统版本
-  static const downloadUrl = 'https://fqzj.site/down ';//下载地址
+  static const downloadUrl = 'www.fqzj.site/down ';//下载地址
 }
 
 

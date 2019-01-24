@@ -56,6 +56,11 @@ class _chatPageState extends State<chatPage> {
       if(this.mounted){
         setState(() {
           widget.originConversation = response.data;
+          for(int i= 0;i<tool.converstation.length;i++){
+            if(tool.converstation[i]['id'] == response.data['id']){
+              tool.converstation[i]['id'] = response.data['id'];
+            }
+          }
         });
       }
       //_scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 1000),curve:Curves.ease);

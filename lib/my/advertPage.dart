@@ -57,18 +57,28 @@ class advertPage extends StatelessWidget{
                 children: <Widget>[
                   Container(
                     padding: EdgeInsets.all(20.0),
-                    child:Text('邀请加入夫妻之家(微信QQ扫码已屏蔽,请使用浏览器扫码)',textAlign:TextAlign.center,style: TextStyle(
-                        color: Colors.orange,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 25.0
-                    ),
-                    ),
+                    child:Column(
+                      children: <Widget>[
+                        Text('邀请加入夫妻之家',textAlign:TextAlign.center,style: TextStyle(
+                            color: Colors.orange,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0
+                        ),
+                        ),
+                        Text('微信QQ扫码已屏蔽,请使用浏览器扫码',textAlign:TextAlign.center,style: TextStyle(
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25.0
+                        ),
+                        ),
+                      ],
+                    )
                   ),
                   Image.asset("assets/images/download.png",width: 200,height: 200,),
                   Container(
                     padding: EdgeInsets.only(top: 5.0),
-                    child:Text('或打开www.fuqi.site/down',textAlign:TextAlign.center,style: TextStyle(
-                        color: Colors.yellow,
+                    child:Text('或打开${Constants.downloadUrl}',textAlign:TextAlign.center,style: TextStyle(
+                        color: Colors.red,
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0
                     ),
@@ -76,7 +86,7 @@ class advertPage extends StatelessWidget{
                   ),
                   Container(
                     padding: EdgeInsets.only(top:20.0,bottom: 5.0),
-                    child:Text('免费的素质夫妻交友APP,拒绝嘴high,欢迎真实夫妻',textAlign:TextAlign.center,style: TextStyle(
+                    child:Text('免费的素质夫妻交友APP,拒绝嘴炮,欢迎真实夫妻',textAlign:TextAlign.center,style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.bold,
                         fontSize: 25.0

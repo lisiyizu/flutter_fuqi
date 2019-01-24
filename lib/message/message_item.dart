@@ -45,9 +45,10 @@ class ConverSationItem extends StatelessWidget{
 
     return GestureDetector(
       onTap: (){
-        Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
+         Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
           return chatPage(originConversation:originConversation);
         }));
+
       },
       child: Container(
         padding: const EdgeInsets.all(10),
