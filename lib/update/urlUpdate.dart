@@ -17,14 +17,14 @@ class urlUpdate extends StatelessWidget{
         child: ListView(
           children: <Widget>[
             Container(height: 50,),
-            Text('请在浏览器打开后下载安装:',textAlign:TextAlign.center,style: TextStyle(
+            Text('请打开浏览器并输入以下地址:',textAlign:TextAlign.center,style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 15
+              fontSize: 25
             ),),
             Text(Constants.downloadUrl,textAlign:TextAlign.center,style: TextStyle(
                 color: Colors.red,
                 fontWeight: FontWeight.bold,
-                fontSize: 20
+                fontSize: 30
             )),
           ],
         ),

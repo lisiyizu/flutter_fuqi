@@ -212,12 +212,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     setState(() {
       _urls = tempImage;
       _urls.forEach((String url) {
-        Widget avator = Image.network(
-          url,
-          fit: BoxFit.contain,
-          height: Constants.bannerImageHeight,
-        );
-
+        Widget avator = tool.getCacheImage(url:url, height:Constants.bannerImageHeight,fit:BoxFit.contain);
         _imagePages.add(
             Container(
               color: Colors.black.withAlpha(900),

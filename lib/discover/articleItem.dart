@@ -34,7 +34,7 @@ class articleItem extends StatelessWidget{
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image.network("${mData.head_img}",width: Constants.FuqiAvatarSize,height:Constants.FuqiAvatarSize,fit: BoxFit.cover,),
+              tool.getCacheImage(url: mData.head_img,width: Constants.FuqiAvatarSize,height: Constants.FuqiAvatarSize,fit: BoxFit.cover),
               Container(
                 width: 10,
               ),

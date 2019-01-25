@@ -99,7 +99,8 @@ class videoItem extends StatelessWidget{
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              Image.network("${mData.image}",width: Constants.FuqiAvatarSize,height:Constants.FuqiAvatarSize,fit: BoxFit.cover,),
+              //Image.network("${mData.image}",width: Constants.FuqiAvatarSize,height:Constants.FuqiAvatarSize,fit: BoxFit.cover,),
+              tool.getCacheImage(url: mData.image,width: Constants.FuqiAvatarSize,height:Constants.FuqiAvatarSize,fit: BoxFit.cover),
               Container(
                 width: 10,
               ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:flutter_fuqi/modal/userData.dart';
 import 'package:flutter_fuqi/fuqi/user_detail.dart';
+import 'package:flutter_fuqi/tool/tool.dart';
 
 
 class UserInfoItem extends StatelessWidget {
@@ -52,7 +53,8 @@ class UserInfoItem extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.network("${userData.head_img}",width: Constants.FuqiAvatarSize,height:Constants.FuqiAvatarSize,fit: BoxFit.cover,),
+            //Image.network("${userData.head_img}",width: Constants.FuqiAvatarSize,height:Constants.FuqiAvatarSize,fit: BoxFit.cover,),
+            tool.getCacheImage(url:userData.head_img, width:Constants.FuqiAvatarSize, height:Constants.FuqiAvatarSize, fit:BoxFit.cover),
             Container(
               width: 10,
             ),

@@ -46,11 +46,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
 
     _urls.forEach((String url) {
 
-      Widget avator = Image.network(
-        url,
-        fit: BoxFit.contain,
-        height: Constants.bannerImageHeight,
-      );
+      Widget avator = tool.getCacheImage(url: url,height: Constants.bannerImageHeight,fit:BoxFit.contain );
 
       _imagePages.add(
           Container(
@@ -132,6 +128,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
                         ),
                         Container(
                           alignment: Alignment.bottomRight,
+                          padding: EdgeInsets.only(right: 5.0),
                           child:Text(_localData.article_comment[index]['comment'], style: TextStyle(fontSize: 12.0),)
                         ),
                         Divider()]

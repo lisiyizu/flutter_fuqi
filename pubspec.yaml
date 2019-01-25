@@ -27,6 +27,7 @@ dependencies:
   rflutter_alert: ^1.0.2
   image_gallery_saver: ^0.1.2
   chewie: ^0.8.0
+  cached_network_image: ^0.5.1
   #path_provider: ^0.4.1
   #permission_handler: ^2.1.1
   #flutter_spinkit: ^3.1.0

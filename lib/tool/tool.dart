@@ -7,6 +7,7 @@ import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_fuqi/modal/userData.dart';
 import 'package:flutter_fuqi/modal/articleData.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class tool {
 
@@ -32,6 +33,7 @@ class tool {
   ];
   //文章信息
   static List<Map> articlePageDatas=[
+    Map(),
     Map(),
     Map(),
     Map(),
@@ -216,7 +218,16 @@ class tool {
     }
   }
 
-
+  static getCacheImage({@required String url,double width,double height,fit}){
+    return CachedNetworkImage(
+      imageUrl: url,
+      placeholder: Image.asset("assets/images/couple.jpg",fit:fit),
+      errorWidget: Icon(Icons.error),
+      width: width,
+      height:height,
+        fit:fit
+    );
+  }
 }
 
 

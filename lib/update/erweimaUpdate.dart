@@ -57,10 +57,19 @@ class erweimaUpdate extends StatelessWidget{
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.all(20.0),
-                      child:Text('最新版本软件下载地址(微信,QQ扫码已屏蔽,请使用浏览器扫码)',textAlign:TextAlign.center,style: TextStyle(
-                          color: Colors.green,
+                      child:Text('最新版本软件下载地址',textAlign:TextAlign.center,style: TextStyle(
+                          color: Colors.orange,
                           fontWeight: FontWeight.bold,
-                          fontSize: 15.0
+                          fontSize: 25.0
+                      ),
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(0.0,5.0,0.0,5.0),
+                      child:Text('微信,QQ扫码已屏蔽,请使用浏览器扫码',textAlign:TextAlign.center,style: TextStyle(
+                          color: Colors.red,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25.0
                       ),
                       ),
                     ),

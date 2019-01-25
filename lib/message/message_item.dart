@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:flutter_fuqi/modal/conversation.dart';
 import 'package:flutter_fuqi/message/chatPage.dart';
+import 'package:flutter_fuqi/tool/tool.dart';
 
 class ConverSationItem extends StatelessWidget{
 
@@ -13,7 +14,7 @@ class ConverSationItem extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     //根据图片的获取方式初始化头像
-    Widget avatar = Image.network(conversation.avatar,width: Constants.ContactAvatarSize, height: Constants.ContactAvatarSize);
+    Widget avatar = tool.getCacheImage(url: conversation.avatar,width: Constants.ContactAvatarSize, height: Constants.ContactAvatarSize);
 
     //未读消息角标
     Widget avatarContainer;
