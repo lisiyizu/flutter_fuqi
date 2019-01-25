@@ -152,7 +152,7 @@ class _publishImagePageState extends State<publishImagePage> {
       onTap: () {
         Navigator.of(context).pop();
         setState(() {
-          _imageFile = ImagePicker.pickImage(source: source,maxWidth:400,maxHeight: 400);
+          _imageFile = ImagePicker.pickImage(source: source,maxWidth:200,maxHeight: 200);
         });
       },
     );
