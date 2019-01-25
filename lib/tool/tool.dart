@@ -221,7 +221,7 @@ class tool {
   static getCacheImage({@required String url,double width,double height,fit}){
     return CachedNetworkImage(
       imageUrl: url,
-      placeholder: Image.asset("assets/images/couple.jpg",fit:fit),
+      placeholder: Image.asset("assets/images/couple.jpg",width:width,height:height,fit:fit),
       errorWidget: Icon(Icons.error),
       width: width,
       height:height,
