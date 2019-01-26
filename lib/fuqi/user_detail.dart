@@ -33,6 +33,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
   List<String> _urls = [];
   var _userTabContent;
   int _currentIndex = 0;
+  var _userData;
 
   _goTochat(var userDetail) async {
       if(userDetail['id'] == tool.myUserData['id']){
@@ -56,7 +57,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
           }));
         }
       }on DioError catch(e) {
-        if(e.response.statusCode == 401){
+        if(e.response != null && e.response.statusCode == 401){
           //登录信息已经失效
           tool.showToast("登录信息已失效");
           Navigator.of(context).pushNamed('/login');
@@ -76,11 +77,11 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
       //权限检查
       if(tool.myUserData['free_count']>0){
         if(_tabs[_currentIndex].text == "聊天"){
-          _goTochat(widget.userData);
+          _goTochat(_userData);
           tabContent = Text("点击聊天即可发送信息");
         }{
           tabContent = UserDtailTabContent(
-              tag: _tabs[_currentIndex].text, userDetail: widget.userData);
+              tag: _tabs[_currentIndex].text, userDetail: _userData);
         }
         int free_count = tool.myUserData['free_count']-1;
         String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
@@ -152,23 +153,24 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
             });
       }else{
         _userTabContent = UserDtailTabContent(
-            tag: _tabs[_currentIndex].text, userDetail: widget.userData);
+            tag: _tabs[_currentIndex].text, userDetail:_userData);
       }
     });}
 
   @override
   void initState() {
     super.initState();
+    _userData = widget.userData;//IOS版本直接操作widget.userData不会生效
     _init();
     _controller = new TabController(length: _tabs.length, vsync: this);
     _controller.addListener(_onChanged);
   }
 
   _getBannerImage(){
-    var temp = widget.userData['user_image'];
+    var temp = _userData['user_image'];
     List<String> tempImage = [];
     if (temp.length == 0){
-      tempImage.add(widget.userData['head_img']);//没有图片则使用默认图片
+      tempImage.add(_userData['head_img']);//没有图片则使用默认图片
     }else{
       for (int i = 0;i < temp.length;i++){
         tempImage.add(temp[i]['img']);
@@ -193,13 +195,13 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     print(url);
     try {
       response = await dioTool.dio.get(url);
-      widget.userData = response.data;
+      _userData = response.data;
     }on DioError catch(e) {
-      if(e.response.statusCode == 401){
+      if(e.response != null && e.response.statusCode == 401){
         msg = "登录信息已失效,请重新登录";
         tool.showToast(msg);
         Navigator.of(context).pushNamed('/login');
-      }else if(e.response.statusCode == 404){
+      }else if(e.response != null && e.response.statusCode == 404){
         msg = "您搜索的用户不存在或已注销";
         tool.showLongToast(msg, 3);
         Navigator.of(context).pop();
@@ -211,9 +213,10 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     }
 
     setState(() {
+      print("set state");
       _getBannerImage();
       //等数据回来的时候再建立Tab,保证_userDetail里有数据
-      _userTabContent = UserDtailTabContent(tag:_tabs[_currentIndex].text,userDetail: widget.userData);
+      _userTabContent = UserDtailTabContent(tag:_tabs[_currentIndex].text,userDetail: _userData);
     });
   }
 
@@ -222,14 +225,14 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
   //刷新人气值
   _init() async {
     String msg;
-    if (widget.userData == null){
+    if (_userData == null){
       await _getUserDetail();
     }else{
       _getBannerImage();
-      _userTabContent = UserDtailTabContent(tag:_tabs[_currentIndex].text,userDetail: widget.userData);
+      _userTabContent = UserDtailTabContent(tag:_tabs[_currentIndex].text,userDetail: _userData);
       try {
-        String url = "${Constants.host}/app/searchUsers/${widget.userData['id']}/";
-        await dioTool.dio.patch(url,data:{'read_count':widget.userData['read_count']+1});
+        String url = "${Constants.host}/app/searchUsers/${_userData['id']}/";
+        await dioTool.dio.patch(url,data:{'read_count':_userData['read_count']+1});
       }on DioError catch(e) {
         if(e.response.statusCode == 401){
           msg = "登录信息已失效,请重新登录";
@@ -256,7 +259,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.userData == null) {
+    if (_userData == null) {
       return tool.getProgressIndicator();
     }else{
       return new Scaffold(
@@ -274,7 +277,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
                         color: Colors.white,
                         child: new Column(
                           children: <Widget>[
-                            UserInfoItem(tag:"hot",userData:widget.userData),
+                            UserInfoItem(tag:"hot",userData:_userData),
                             Divider(),
                             TabBar(
                               indicatorWeight: 3.0,

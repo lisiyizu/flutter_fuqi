@@ -46,6 +46,9 @@ class ConverSationItem extends StatelessWidget{
 
     return GestureDetector(
       onTap: (){
+        if(conversation.unreadMsgCount>0){
+          conversation.unreadMsgCount = 0;
+        }
          Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
           return chatPage(originConversation:originConversation);
         }));
