@@ -153,12 +153,8 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
     try{
       var response = await dioTool.dio.post('${Constants.host}/app/writeComment/',
           data:{'comment':comment,'article_id':_localData.id});
-      response = await dioTool.dio.get('${Constants.host}/app/searchArticles/${_localData.id}/');
       tool.showToast("发布成功");
-      _localData = articleData.getArticleData(response.data);
-      setState(() {
-        _articleTabContent = _getArticleTabContent();
-      });
+      _getArticleInfo();
     }on DioError catch (e){
       if (e.response != null && e.response.statusCode == 401){
         tool.showToast("密码已过期,请重新登录");
@@ -200,7 +196,15 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
   //获取文章详情,增加人气统计
   void _getArticleInfo() async {
     try{
-      await dioTool.dio.get("${Constants.host}/app/searchArticles/${_localData.id}/");
+      var response = await dioTool.dio.get("${Constants.host}/app/searchArticles/${_localData.id}/");
+      //widget.mData.setNewData(_localData);//如果不更新它,重新进来时不会显示新的评论信息
+      _localData = articleData.getArticleData(response.data);
+      if(_localData.comment_count != widget.mData.comment_count){
+        setState(() {
+          widget.mData.setNewData(_localData);//如果不更新它,重新进来时不会显示新的评论信息
+          _articleTabContent = _getArticleTabContent();
+        });
+      }
     }on DioError catch (e){
       if(e.response != null && e.response.statusCode == 401){
         tool.showToast("密码已过期,请重新登录");

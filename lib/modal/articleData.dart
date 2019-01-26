@@ -13,6 +13,11 @@ class articleData{
   int author;
   var article_comment;
 
+  setNewData(articleData newData){
+    this.comment_count = newData.comment_count;
+    this.article_comment = newData.article_comment;
+  }
+
   articleData({this.id,this.article_comment,this.title,this.brief,this.content,this.pub_date,this.head_img,this.head_img2,this.head_img3,this.read_count,this.comment_count,this.is_free,this.author});
 
   static getArticleData(var data){
