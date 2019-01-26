@@ -56,6 +56,7 @@ class _chatPageState extends State<chatPage> {
       if(this.mounted){
         setState(() {
           widget.originConversation = response.data;
+
         });
       }
       //_scrollController.animateTo(_scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 1000),curve:Curves.ease);
