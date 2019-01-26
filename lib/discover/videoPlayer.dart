@@ -42,6 +42,7 @@ class _videoPlayerState extends State<videoPlayer> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.mData.desc),
+          centerTitle: true,
         ),
         body: Column(
           children: <Widget>[

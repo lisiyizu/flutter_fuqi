@@ -39,7 +39,7 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
 
   TabController _controller;
   String _selectedTag;
-  List<UserData> userDatas=[];
+  List<dynamic> userDatas=[];
   TextEditingController _textController = new TextEditingController();
   int page = 1;
   int pageSize = 50;
@@ -122,38 +122,13 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
     //数据已经到底了
     print(response.data);
     var result = response.data['results'];
-    List<UserData> UserDatas=[];
-    for(var item in result){
-      UserDatas.add(UserData(
-        id:item['id'],
-        name:item['name'],
-        desc:item['desc'],
-        head_img: item['head_img'],
-        sex: item['sex'],
-        target: item['target'],
-        qq: item['qq'],
-        profile: item['profile'],
-        province: item['province'],
-        city: item['city'],
-        age: item['age'],
-        login_time: item['login_time'],
-        buy_time: item['buy_time'],
-        free_count: item['free_count'],
-        read_count: item['read_count'],
-        ip: item['ip'],
-        is_identification: item['is_identification'],
-        is_spa: item['is_spa'],
-        spa_profile: item['spa_profile'],
-        user: item['user'],
-      ));
-    }
     if (this.mounted){
       setState(() {
         // 是否是加载更多数据
         if (bGetMore) {
-          userDatas.addAll(UserDatas);
+          userDatas.addAll(result);
         } else {
-          userDatas = UserDatas;
+          userDatas = result;
         }
         page += 1;
         tool.userPageDatas[_controller.index]['data'] = userDatas;

@@ -13,7 +13,7 @@ class userDynamicItem extends StatelessWidget {
     // TODO: implement build
     return Container(
       decoration: BoxDecoration(border: Border(bottom: BorderSide(color: Colors.black12))),//背景色和边框
-      padding: EdgeInsets.all(10.0),
+      padding: EdgeInsets.fromLTRB(5.0,5.0,5.0,0.0),
       child: Column(
         children: <Widget>[
           Container(
