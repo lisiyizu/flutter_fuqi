@@ -128,6 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'code': tool.changeToID(UserRegisterData.inviteCode)});
       Navigator.of(context).pop();
       tool.showToast("注册成功,请返回登录");
+      Navigator.of(context).pushNamed('/login');
     } on DioError catch (e) {
       if (e.response.statusCode == 400) {
         if (e.response.data['non_field_errors'] != null) {
