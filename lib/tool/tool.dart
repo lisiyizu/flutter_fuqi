@@ -24,6 +24,8 @@ class tool {
 
   static bool bGetNewConversation = true;
 
+  static bool bFirstLoginIn = false;//是否是第一次登录
+
   //用户信息
   static List<Map> userPageDatas=[
     Map(),
@@ -50,6 +52,9 @@ class tool {
     if(Constants.bannerImageHeight>400){
       Constants.bannerImageHeight = 400;
     }
+
+    //初始化时
+    bGetNewConversation = true;//针对账户切换
 
     //获取登录者的信息
     tool.getMyUserInfo(context: context);
@@ -227,6 +232,39 @@ class tool {
       height:height,
         fit:fit
     );
+  }
+
+  static goToQuestion({@required BuildContext context,@required String title,String desc}){
+    Alert(
+      context: context,
+      type: AlertType.warning,
+      title: title,
+      desc: desc,
+      buttons: [
+        DialogButton(
+          child: Text(
+            "暂不查看",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () => Navigator.of(context).pop(),
+          gradient: LinearGradient(colors: [
+            Color.fromRGBO(116, 116, 191, 1.0),
+            Color.fromRGBO(52, 138, 199, 1.0)
+          ]),
+        ),
+        DialogButton(
+          child: Text(
+            "立即查看",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          onPressed: () {
+            Navigator.of(context).pop();
+            Navigator.of(context).pushNamed('/question');
+          },
+          color: Color.fromRGBO(0, 179, 134, 1.0),
+        )
+      ],
+    ).show();
   }
 }
 

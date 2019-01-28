@@ -129,8 +129,10 @@ class _SignUpPageState extends State<SignUpPage> {
       Navigator.of(context).pop();
       tool.showToast("注册成功,请返回登录");
       Navigator.of(context).pushNamed('/login');
+      tool.bFirstLoginIn = true;
     } on DioError catch (e) {
-      if (e.response.statusCode == 400) {
+      Navigator.of(context).pop();
+      if (e.response!=null && e.response.statusCode == 400) {
         if (e.response.data['non_field_errors'] != null) {
           msg = "您之前在网站或APP上注册过,请直接登录";
           Navigator.of(context).pop();
@@ -212,12 +214,12 @@ class _SignUpPageState extends State<SignUpPage> {
     }
     if (UserRegisterData.qq == null || UserRegisterData.qq
         .trim()
-        .length == 0) {
+        .length <=8) {
       showDialog(
           context: context,
           builder: (context) =>
               AlertDialog(
-                title: Text('qq格式错误'),
+                title: Text('qq格式错误,请输入正确的qq'),
               ));
       return false;
     }
@@ -561,7 +563,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       onTap: () {
                         if (_checkRegisterData()) {
                           _submit();
-                          tool.getProgressIndicator();
+                          //tool.getProgressIndicator();
                         }
                       },
                       child: Container(

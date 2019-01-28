@@ -10,6 +10,7 @@ import 'package:flutter_fuqi/publish/publishPage.dart';
 import 'package:flutter_fuqi/discover/discoverPage.dart';
 import 'package:flutter_fuqi/my/kefuPage.dart';
 import 'package:flutter_fuqi/update/updatePage.dart';
+import 'package:flutter_fuqi/my/questionPage.dart';
 
 
 void main() => runApp(MyApp());
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/publish':(BuildContext context) => publishPage(),
         '/kefu':(BuildContext context) => kefuPage(),
         '/update':(BuildContext context) => updatePage(),
+        '/question':(BuildContext context) => questionPage(),
       },
       home: firstPage(),
       //home: HomePage(),

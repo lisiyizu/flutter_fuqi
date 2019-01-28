@@ -76,12 +76,12 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
       //tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
       //权限检查
       if(tool.myUserData['free_count']>0){
+        tabContent = UserDtailTabContent(tag: _tabs[_currentIndex].text, userDetail: _userData);
+        setState(() {
+          _userTabContent = tabContent;
+        });
         if(_tabs[_currentIndex].text == "聊天"){
           _goTochat(_userData);
-          tabContent = Text("点击聊天即可发送信息");
-        }{
-          tabContent = UserDtailTabContent(
-              tag: _tabs[_currentIndex].text, userDetail: _userData);
         }
         int free_count = tool.myUserData['free_count']-1;
         String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
@@ -90,12 +90,13 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
         tool.showToast("夫妻币减1");
       }else{
         tabContent = Text("您的夫妻币不足,请在我->常见问题中,查看如何获取夫妻币");
+        setState(() {
+          _userTabContent = tabContent;
+        });
+        tool.goToQuestion(context:context,title:"查看如何获取夫妻币",desc: "您的夫妻币不足");
       }
-      setState(() {
-        _userTabContent = tabContent;
-      });
     }on DioError catch(e) {
-      if(e.response.statusCode == 401){
+      if(e.response != null && e.response.statusCode == 401){
         msg = "登录信息已失效,请重新登录";
         Navigator.of(context).pushNamed('/login');
       }else{
@@ -196,6 +197,9 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     try {
       response = await dioTool.dio.get(url);
       _userData = response.data;
+      if(widget.id == tool.myUserData['id']){
+        tool.myUserData = _userData;
+      }
     }on DioError catch(e) {
       if(e.response != null && e.response.statusCode == 401){
         msg = "登录信息已失效,请重新登录";

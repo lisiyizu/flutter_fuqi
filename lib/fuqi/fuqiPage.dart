@@ -87,6 +87,11 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
       if(!_recoverData(true)){
         _getUserInfos(false);
       }
+      //新手指引
+      if(tool.bFirstLoginIn){
+        tool.goToQuestion(context:context,title:"新手指引",desc:"欢迎加入夫妻之家");
+        tool.bFirstLoginIn = false;
+      }
     }
   }
 

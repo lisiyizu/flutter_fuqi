@@ -36,7 +36,7 @@ class videoItem extends StatelessWidget{
         }));
       }else{
         Navigator.of(context).pop();
-        tool.showLongToast("您的夫妻币不足,请在我->常见问题中,查看如何获取夫妻币",5);
+        tool.goToQuestion(context:context,title:"查看如何获取夫妻币",desc: "您的夫妻币不足");
       }
     }on DioError catch(e) {
       if(e.response.statusCode == 401){
