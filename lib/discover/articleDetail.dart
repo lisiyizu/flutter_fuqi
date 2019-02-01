@@ -70,7 +70,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
   _getArticleTabContent(){
     Widget content;
     if (_tabs[_currentIndex].text == '文章详情'){
-      if(tool.myUserData['profile'] == '普通会员' && widget.tag == 'qq' && tool.myUserData['is_free'] == false){
+      if(tool.myUserData['profile'] == '普通会员' && widget.tag == 'qq' && _localData.is_free == false){
         content = Text("内容:权限不够,请升级为VIP后查看",style:TextStyle(color: Colors.red));
       }else{
         content = Text("内容:${_localData.content}");
