@@ -114,7 +114,7 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context, child: tool.getProgressIndicator(info: "数据上传中..."));
       response =
       await dioTool.dio.post('${Constants.host}/app/useRegister/', data: {
-        'name': UserRegisterData.name,
+        'name': UserRegisterData.userName,
         'username': UserRegisterData.userName,
         'password': UserRegisterData.userPassword,
         'desc': UserRegisterData.desc,
@@ -148,17 +148,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   _checkRegisterData() {
-    if (UserRegisterData.name == null || UserRegisterData.name
-        .trim()
-        .length == 0) {
-      showDialog(
-          context: context,
-          builder: (context) =>
-              AlertDialog(
-                title: Text('昵称格式错误'),
-              ));
-      return false;
-    }
+
     if (UserRegisterData.userName == null || UserRegisterData.userName
         .trim()
         .length == 0) {
@@ -285,26 +275,6 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       onChanged: (String str) {
                         UserRegisterData.inviteCode = str;
-                      },
-                    ),
-                    SizedBox(
-                      height: 5.0,
-                    ),
-                    TextField(
-                      decoration: InputDecoration(
-                          hintText: '请输入你的昵称(非登录账户)',
-                          labelText: "昵称(非登录账户)",
-                          labelStyle: TextStyle(
-                              fontFamily: 'Montserrat',
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green)
-                          )
-                      ),
-                      onChanged: (String str) {
-                        UserRegisterData.name = str;
                       },
                     ),
                     SizedBox(
