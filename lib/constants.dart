@@ -30,6 +30,7 @@ class AppStyles {
   static const FuqiInfoSpecialStyle = TextStyle(
     fontSize: 14.0,
     color: Colors.red,
+    fontWeight: FontWeight.bold
   );
   static const FuqiInfoStyle = TextStyle(
     fontSize: 14.0,
