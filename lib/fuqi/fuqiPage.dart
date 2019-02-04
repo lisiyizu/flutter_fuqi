@@ -143,14 +143,14 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
   }
 
   Future<Null> onHeaderRefresh() {
-    return new Future.delayed(new Duration(seconds: 2), () {
+    return new Future.delayed(new Duration(seconds: 5), () {
       //上拉刷新的时候永远找第一页
       _getUserInfos(false);
     });
   }
 
   Future<Null> onFooterRefresh() {
-    return new Future.delayed(new Duration(seconds: 2), () {
+    return new Future.delayed(new Duration(seconds: 5), () {
       _getUserInfos(true);
     });
   }

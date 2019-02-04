@@ -92,7 +92,12 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
             ),
           ],
         );
-    }else{
+    }else if(_tabs[_currentIndex].text == "联系作者"){
+      Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
+        return UserDetail(id: _localData.author);
+      }));
+      return Text("点击联系作者");
+    } else{
       return ListView.builder(
           itemCount: _localData.article_comment.length,
           itemBuilder: (BuildContext context, int index){
@@ -223,6 +228,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
     _tabs = [
       Tab(text: '文章详情'),
       Tab(text: '评论'),
+      Tab(text: '联系作者'),
     ];
     _localData = widget.mData;//IOS版直接操作widget.mData有异常
     _controller = new TabController(length: _tabs.length, vsync: this);
@@ -239,7 +245,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
   }
 
   _getFloatingActionButton() {
-    if(_tabs[_currentIndex].text == '文章详情') {
+    if(_tabs[_currentIndex].text != '评论') {
       return null;
     }else {
       return Builder(builder: (BuildContext context) {

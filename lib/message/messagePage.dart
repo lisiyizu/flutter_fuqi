@@ -5,6 +5,7 @@ import 'package:flutter_fuqi/message/message_item.dart';
 import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
+import 'package:flutter_refresh/flutter_refresh.dart';
 
 
 class messagePage extends StatefulWidget{
@@ -59,12 +60,16 @@ class _messagePageState extends State<messagePage> {
     }
   }
 
+  Future<Null> onHeaderRefresh() {
+    return new Future.delayed(new Duration(seconds: 5), () {
+      //上拉刷新的时候永远找第一页
+      print(1111);
+      _getConversations();//每次都获取最新数据
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    if(_conversations == null){
-      return tool.getProgressIndicator();
-    }else{
       return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,//去掉返回箭头
@@ -72,13 +77,15 @@ class _messagePageState extends State<messagePage> {
           centerTitle:true,
           title: Text('聊天'),
         ),
-        body: ListView.builder(
-            itemCount: _mConversation.length,
-            itemBuilder: (BuildContext context,int index){
-              return ConverSationItem(conversation: _mConversation[index],originConversation:_conversations[index]);
-            }
-        ),
-      );
-    }
+        body: new Refresh(
+            onHeaderRefresh: onHeaderRefresh,
+            childBuilder: (BuildContext context,
+                {ScrollController controller, ScrollPhysics physics}) {
+              return  ListView.builder(
+                  itemCount: _mConversation.length,
+                  itemBuilder: (BuildContext context,int index){
+                return ConverSationItem(conversation: _mConversation[index],originConversation:_conversations[index]);
+              });
+            }));
   }
 }

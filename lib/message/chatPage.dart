@@ -23,6 +23,7 @@ class chatPage extends StatefulWidget {
 class _chatPageState extends State<chatPage> {
 
   final TextEditingController _textController = new TextEditingController();
+  var _localoriginConversation;
 
   Future _handleSubmitted(String text) async {
     if(text == null || text.length == 0 || text.trim() == 0){
@@ -34,7 +35,7 @@ class _chatPageState extends State<chatPage> {
       var response = await dioTool.dio.post('${Constants.host}/app/message/',
           data: {
             'content': text,
-            'converstation_id': widget.originConversation['id']
+            'converstation_id': _localoriginConversation['id']
           });
       //更新聊天信息和刷新未读次数
       _getConversation();
@@ -52,10 +53,10 @@ class _chatPageState extends State<chatPage> {
 
   _getConversation() async {
     try{
-      var response = await dioTool.dio.get('${Constants.host}/app/readConverstation/${widget.originConversation['id']}/');
+      var response = await dioTool.dio.get('${Constants.host}/app/readConverstation/${_localoriginConversation['id']}/');
       if(this.mounted){
         setState(() {
-          widget.originConversation = response.data;
+          _localoriginConversation = response.data;
 
         });
       }
@@ -81,7 +82,6 @@ class _chatPageState extends State<chatPage> {
               new Flexible(
                   child: new TextField(
                     controller: _textController,
-                    onSubmitted: _handleSubmitted,
                     decoration: new InputDecoration.collapsed(hintText: '发送消息'),
                   )
               ),
@@ -102,6 +102,7 @@ class _chatPageState extends State<chatPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _localoriginConversation = widget.originConversation;
     //访问conversation,刷新未读次数
     _getConversation();
   }
@@ -111,7 +112,7 @@ class _chatPageState extends State<chatPage> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.originConversation[tool.getPersonInfo(widget.originConversation,false)]['name']),
+        title: Text(_localoriginConversation[tool.getPersonInfo(_localoriginConversation,false)]['name']),
         centerTitle: true,
       ),
       body: Column(
@@ -119,9 +120,9 @@ class _chatPageState extends State<chatPage> {
           Flexible(
             child: ListView.builder(
               reverse: true,
-              itemCount: widget.originConversation['converstation_message'].length,
+              itemCount: _localoriginConversation['converstation_message'].length,
               itemBuilder: (context,index){
-                return chatItem(originConversation:widget.originConversation,index:index);
+                return chatItem(originConversation:_localoriginConversation,index:index);
               },
             ),
           ),

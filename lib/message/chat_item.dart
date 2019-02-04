@@ -49,8 +49,7 @@ class chatItem extends StatelessWidget{
                         ),),
                     ),
                     Container(width: 5.0,)
-                  ]),
-                    Divider()]
+                  ])]
           )
       );
     }else{
@@ -89,8 +88,7 @@ class chatItem extends StatelessWidget{
                                 style: new TextStyle(fontSize: 16.0)))
 
                     ),],
-                ),
-                Divider()]
+                )]
           )
       );
     }

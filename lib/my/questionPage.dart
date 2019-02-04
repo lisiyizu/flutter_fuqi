@@ -57,6 +57,7 @@ class questionPage extends StatelessWidget {
               children: <Widget>[
                 _buildTaskItem(Colors.green,"问:如何改头像","答:点击发布->修改头像"),
                 _buildTaskItem(Colors.grey,"问:91视频在哪里看","答:点击发现->91视频"),
+                _buildTaskItem(Colors.purple,"问:如何寻找本省夫妻","答:点击夫妻->最上面的<全国>,可以切换到本省"),
                 _buildTaskItem(Colors.blue,"问:夫妻币有什么用?,如何获得?","答:查看一个联系方式或者聊天需要消耗一枚夫妻币,方式一:邀请夫妻加入,填写你的邀请码,即可获赠5枚夫妻币,方式二:联系客服充值,方式三:认证夫妻,前三个月每月赠送100枚"),
                 _buildTaskItem(Colors.yellow,"问:在哪里获得我的邀请码","答:点击我->推广赚取夫妻币"),
                 _buildTaskItem(Colors.pinkAccent,"问:夫妻如何认证","答:点击”我“,在头像下方查看ID,女方手持一张纸,纸上写你的ID,拍照给客服,即可开通,单男不需要认证"),
