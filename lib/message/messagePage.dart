@@ -63,7 +63,6 @@ class _messagePageState extends State<messagePage> {
   Future<Null> onHeaderRefresh() {
     return new Future.delayed(new Duration(seconds: 5), () {
       //上拉刷新的时候永远找第一页
-      print(1111);
       _getConversations();//每次都获取最新数据
     });
   }
