@@ -15,7 +15,7 @@ class UserDtailTabContent extends StatelessWidget {
 
   Widget _getDynamicContent(var userDetail){
     if (userDetail['user_dynamic'].length == 0){
-      return userDynamicItem(des:userDetail['desc'],time:tool.processTime(userDetail['buy_time']));
+      return userDynamicItem(des:userDetail['desc'],time:tool.processTime(userDetail['login_time']));
     }else{
       return ListView.builder(
           itemCount: userDetail['user_dynamic'].length,
