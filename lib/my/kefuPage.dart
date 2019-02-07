@@ -39,9 +39,9 @@ class kefuPage extends StatelessWidget{
                   alignment: Alignment.centerLeft,
                   child:Row(
                       children: <Widget>[
-                        Icon(IconData(0xe768,fontFamily: Constants.IconFontFamily)),
+                        Icon(IconData(0xe605,fontFamily: Constants.IconFontFamily)),
                         Container(width: 10.0,),
-                        Text(Constants.weixin2)
+                        Text(Constants.qq2)
                       ]),
                 ),
                 Divider(),
