@@ -156,18 +156,7 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           builder: (context) =>
               AlertDialog(
-                title: Text('用户名格式错误'),
-              ));
-      return false;
-    }
-    if (UserRegisterData.userName == null || UserRegisterData.userName
-        .trim()
-        .length == 0) {
-      showDialog(
-          context: context,
-          builder: (context) =>
-              AlertDialog(
-                title: Text('用户名格式错误'),
+                title: Text('用户名不能为空'),
               ));
       return false;
     }
@@ -178,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           builder: (context) =>
               AlertDialog(
-                title: Text('密码格式错误'),
+                title: Text('密码不能为空'),
               ));
       return false;
     }
@@ -198,13 +187,13 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           builder: (context) =>
               AlertDialog(
-                title: Text('简介格式错误'),
+                title: Text('简介不能为空'),
               ));
       return false;
     }
     if (UserRegisterData.qq == null || UserRegisterData.qq
         .trim()
-        .length <=8) {
+        .length <=5) {
       showDialog(
           context: context,
           builder: (context) =>
@@ -220,7 +209,7 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           builder: (context) =>
               AlertDialog(
-                title: Text('微信号码格式错误'),
+                title: Text('微信号不能为空'),
               ));
       return false;
     }
@@ -231,7 +220,7 @@ class _SignUpPageState extends State<SignUpPage> {
           context: context,
           builder: (context) =>
               AlertDialog(
-                title: Text('城市格式错误'),
+                title: Text('城市不能为空'),
               ));
       return false;
     }
