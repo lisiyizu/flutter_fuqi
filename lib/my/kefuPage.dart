@@ -37,6 +37,16 @@ class kefuPage extends StatelessWidget{
                 Divider(),
                 Container(
                   alignment: Alignment.centerLeft,
+                  child:Row(
+                      children: <Widget>[
+                        Icon(IconData(0xe768,fontFamily: Constants.IconFontFamily)),
+                        Container(width: 10.0,),
+                        Text(Constants.weixin2)
+                      ]),
+                ),
+                Divider(),
+                Container(
+                  alignment: Alignment.centerLeft,
                   child: Text('获取最新消息,防止丢失,关注公众号:${Constants.gongzhonghao}'),
                 ),
                 Container(
