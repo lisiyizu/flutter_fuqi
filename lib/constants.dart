@@ -129,9 +129,9 @@ List<String> Provinces = [
 class TaskManager {
   /// A set of tasks
   static List<Task> tasksList = [
-    Task(Colors.green, '我要认证', '成为认证夫妻,点亮认证图标,赠送VIP'),
     Task(Colors.blue, '我要改头像', '发布到我的个人资料中'),
     Task(Colors.red, '我要写文章', '发布文章到论坛'),
+    Task(Colors.green, '我要认证', '成为认证夫妻,点亮认证图标,赠送VIP'),
     Task(Colors.purple, '我要上传照片', '发布到我的相册中'),
     Task(Colors.amber, '我要写动态', '发布到我的个人资料中'),
   ];

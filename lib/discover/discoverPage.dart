@@ -47,7 +47,7 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
   List<articleData> _articleDatas = [];
   List<Video> _videoDatas = [];
   int page = 1;
-  int pageSize = 50;
+  int pageSize = 100;
   @override
   void initState() {
     // TODO: implement initStates
