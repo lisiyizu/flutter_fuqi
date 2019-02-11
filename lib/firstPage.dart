@@ -35,6 +35,7 @@ class _firstPageState extends State<firstPage>{
     String token = await prefs.get('token');
     if (token==null){
       print("没有token,需要登录");
+      tool.bFirstLoginIn = true;
       Navigator.of(context).pushNamed('/login');
     }else{
       try{
