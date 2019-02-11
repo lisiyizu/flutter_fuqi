@@ -81,7 +81,7 @@ class Constants {
   static const weixin = 'fuqi9970(加的人多,容易异常,建议加qq)';
   static const gongzhonghao = '福气之家';
   static double bannerImageHeight = 150.0; //轮播图高度
-  static const String version = "1.1";//当前系统版本
+  static const String version = "1.2";//当前系统版本
   static const downloadUrl = 'www.fqzj.site/down ';//下载地址
 }
 
