@@ -133,11 +133,13 @@ class _SignUpPageState extends State<SignUpPage> {
     } on DioError catch (e) {
       Navigator.of(context).pop();
       if (e.response!=null && e.response.statusCode == 400) {
-        if (e.response.data['non_field_errors'] != null) {
-          msg = "您之前在网站或APP上注册过,请直接登录";
+        if(e.response.data['username'] != null){
+          msg = '用户名已存在,请修改用户名';
+        }else if (e.response.data['non_field_errors'] != null) {
+          msg = e.response.data['non_field_errors'][0];
           Navigator.of(context).pop();
         } else {
-          msg = '用户名已存在,请修改用户名';
+          msg = "注册失败,请正确填写每一项内容并检查长度是否超长";
         }
       } else {
         msg = "注册失败,请稍后再试";
