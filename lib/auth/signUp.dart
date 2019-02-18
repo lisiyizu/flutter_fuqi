@@ -191,6 +191,15 @@ class _SignUpPageState extends State<SignUpPage> {
               ));
       return false;
     }
+    if (UserRegisterData.desc.trim().length < 10) {
+      showDialog(
+          context: context,
+          builder: (context) =>
+              AlertDialog(
+                title: Text('简介字数不能低于10个,请详细描述'),
+              ));
+      return false;
+    }
     if (UserRegisterData.qq == null || UserRegisterData.qq
         .trim()
         .length <=5) {
@@ -271,8 +280,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     TextField(
                       decoration: InputDecoration(
-                          labelText: "用户名(登录账户)",
-                          hintText: '请输入你的用户名(登录账户)',
+                          labelText: "昵称/用户名/登录账户",
+                          hintText: '请输入你的昵称/用户名/登录账户',
                           labelStyle: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
