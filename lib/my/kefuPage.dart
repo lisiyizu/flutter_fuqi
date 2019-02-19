@@ -47,7 +47,7 @@ class kefuPage extends StatelessWidget{
                 Divider(),
                 Container(
                   alignment: Alignment.centerLeft,
-                  child: Text('官方网站:${Constants.host}'),
+                  child: Text('官方网站:${Constants.webUrl}'),
                 ),
               ]),
         ),

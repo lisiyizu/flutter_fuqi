@@ -79,6 +79,7 @@ class Constants {
   static const qq = '2123108929(经常在线)';
   static const qq2 = '1663084600(备用)';
   static const weixin = 'fuqi9970(加的人多,容易异常,建议加qq)';
+  static const webUrl= 'https://www.fuqi.site';//官方网址
   static const gongzhonghao = '福气之家';
   static double bannerImageHeight = 150.0; //轮播图高度
   static const String version = "1.2";//当前系统版本
