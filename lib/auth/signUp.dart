@@ -91,6 +91,44 @@ class _SignUpPageState extends State<SignUpPage> {
     '65'
   ];
 
+  List<String> _allProvinceChoices = [
+    "北京" ,
+    "上海",
+    "江苏",
+    "浙江",
+    "广东",
+    "山东",
+    "河南",
+    "安徽",
+    "澳门",
+    "重庆",
+    "福建",
+    "甘肃",
+    "广西",
+    "贵州",
+    "海南",
+    "湖北",
+    "河北",
+    "香港",
+    "黑龙江",
+    "湖南",
+    "吉林",
+    "江西",
+    "辽宁",
+    "内蒙古",
+    "宁夏",
+    "青海",
+    "山西",
+    "四川",
+    "陕西",
+    "天津",
+    "台湾",
+    "新疆",
+    "西藏",
+    "云南",
+  ];
+
+
   _submit() async {
     //注册成功去登录
     Response response;
@@ -462,7 +500,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             UserRegisterData.province = _province;
                           });
                         },
-                        items: Provinces.map<DropdownMenuItem<String>>((
+                        items: _allProvinceChoices.map<DropdownMenuItem<String>>((
                             String value) {
                           return DropdownMenuItem<String>(
                             value: value,
