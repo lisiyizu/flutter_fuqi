@@ -152,7 +152,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
             context: context,
             builder: (BuildContext context) {
               return SimpleDialog(
-                  title: Text('需要消耗一个夫妻币'),
+                  title: Text('需要消耗2枚夫妻币'),
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(left: 25.0),
