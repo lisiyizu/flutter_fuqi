@@ -71,13 +71,13 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
       //实时获取数据
       //tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
       //权限检查
-      if(tool.myUserData['free_count']>0){
+      if(tool.myUserData['free_count']>1){
         tabContent = UserDtailTabContent(tag: _tabs[_currentIndex].text, userDetail: _userData);
         setState(() {
           _userTabContent = tabContent;
         });
-        tool.showToast("夫妻币减1");
-        int free_count = tool.myUserData['free_count']-1;
+        tool.showToast("夫妻币减2");
+        int free_count = tool.myUserData['free_count']-2;
         String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
         response = await dioTool.dio.patch(url,data:{'free_count':free_count});
         tool.myUserData = response.data;
@@ -112,10 +112,10 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
         setState(() {
           _userTabContent = tabContent;
         });
-        if(tool.myUserData['profile'] != "皇冠VIP会员" && tool.myUserData['profile'] != "至尊VIP会员" ){
-          _userTabContent = Text('抱歉,只有皇冠VIP会员和至尊VIP会员允许在线聊天',style:TextStyle(color: Colors.red));
-          return;
-        }
+//        if(tool.myUserData['profile'] != "皇冠VIP会员" && tool.myUserData['profile'] != "至尊VIP会员" ){
+//          _userTabContent = Text('抱歉,只有皇冠VIP会员和至尊VIP会员允许在线聊天',style:TextStyle(color: Colors.red));
+//          return;
+//        }
         if(_userData['id'] == tool.myUserData['id']){
           tool.showToast('抱歉,不能给自己发消息');
           return;
