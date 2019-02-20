@@ -71,7 +71,7 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
     Widget content;
     if (_tabs[_currentIndex].text == '文章详情'){
       if((tool.myUserData['profile'] == '普通会员' || tool.myUserData['profile'] == '高级VIP会员') && widget.tag == 'qq' && _localData.is_free == false){
-        content = Text("内容:权限不够,只有钻石以上VIP可查看",style:TextStyle(color: Colors.red));
+        content = Text("内容:权限不够,只有钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
       }else{
         content = Text("内容:${_localData.content}");
       }

@@ -59,7 +59,7 @@ class UserDtailTabContent extends StatelessWidget {
   Widget build(BuildContext context) {
     if (tag == "动态") {
       return _getDynamicContent(userDetail);
-    }else if(tag == "聊天") {
+    }else if(tag == "在线聊天") {
       return Text("点击聊天可以在线聊天");
     } else{
       return _getQQContent(context,userDetail);

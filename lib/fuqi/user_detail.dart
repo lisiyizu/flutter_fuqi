@@ -26,7 +26,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
   List<Tab> _tabs=[
     Tab(text: '动态'),
     Tab(text: '联系方式'),
-    Tab(text: '聊天'),
+    Tab(text: '在线聊天'),
   ];
   List<Widget> _imagePages = [];
   TabController _controller;
@@ -36,10 +36,6 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
   var _userData;
 
   _goTochat(var userDetail) async {
-      if(userDetail['id'] == tool.myUserData['id']){
-         tool.showToast('抱歉,不能给自己发消息');
-         return;
-      }
       try{
         tool.bGetNewConversation = true;
         var response = await dioTool.dio.get('${Constants.host}/app/readConverstation/?id=${userDetail['id']}');
@@ -80,14 +76,11 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
         setState(() {
           _userTabContent = tabContent;
         });
-        if(_tabs[_currentIndex].text == "聊天"){
-          _goTochat(_userData);
-        }
+        tool.showToast("夫妻币减1");
         int free_count = tool.myUserData['free_count']-1;
         String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
         response = await dioTool.dio.patch(url,data:{'free_count':free_count});
         tool.myUserData = response.data;
-        tool.showToast("夫妻币减1");
       }else{
         tabContent = Text("您的夫妻币不足,请在我->常见问题中,查看如何获取夫妻币");
         setState(() {
@@ -106,11 +99,55 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
       return;
     }
   }
-
+  _onlineChat() async {
+    String msg;
+    var response;
+    var tabContent;
+    try {
+      //实时获取数据
+      //tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
+      //权限检查
+      if(tool.myUserData['free_count']>=10){
+        tabContent = UserDtailTabContent(tag: _tabs[_currentIndex].text, userDetail: _userData);
+        setState(() {
+          _userTabContent = tabContent;
+        });
+        if(tool.myUserData['profile'] != "皇冠VIP会员" && tool.myUserData['profile'] != "至尊VIP会员" ){
+          _userTabContent = Text('抱歉,只有皇冠VIP会员和至尊VIP会员允许在线聊天',style:TextStyle(color: Colors.red));
+          return;
+        }
+        if(_userData['id'] == tool.myUserData['id']){
+          tool.showToast('抱歉,不能给自己发消息');
+          return;
+        }
+        tool.showToast('夫妻币减10');
+        _goTochat(_userData);
+        int free_count = tool.myUserData['free_count']-10;
+        String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
+        response = await dioTool.dio.patch(url,data:{'free_count':free_count});
+        tool.myUserData = response.data;
+      }else{
+        tabContent = Text("您的夫妻币不足,请在我->常见问题中,查看如何获取夫妻币");
+        setState(() {
+          _userTabContent = tabContent;
+        });
+        tool.goToQuestion(context:context,title:"查看如何获取夫妻币",desc: "您的夫妻币不足");
+      }
+    }on DioError catch(e) {
+      if(e.response != null && e.response.statusCode == 401){
+        msg = "登录信息已失效,请重新登录";
+        Navigator.of(context).pushNamed('/login');
+      }else{
+        msg = "网络不佳,请稍候再试";
+      }
+      tool.showToast(msg);
+      return;
+    }
+  }
   _onChanged() {
     setState(() {
       _currentIndex = this._controller.index;
-      if (_tabs[_currentIndex].text == "联系方式" || _tabs[_currentIndex].text == "聊天") {
+      if (_tabs[_currentIndex].text == "联系方式") {
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -152,7 +189,49 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
                             ]))
                   ]);
             });
-      }else{
+      }else if(_tabs[_currentIndex].text == "在线聊天"){
+        showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return SimpleDialog(
+                  title: Text('需要消耗10个夫妻币'),
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(left: 25.0),
+                      child: Text('您当前的夫妻币是:${tool.myUserData['free_count']}'),
+                    ),
+                    new Container(
+                        margin: const EdgeInsets.only(top: 18.0),
+                        child: new Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              new RaisedButton(
+                                elevation: 0.0,
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).pop();
+                                  setState(() {
+                                    _userTabContent = Text("您已经取消在线聊天");
+                                  });
+                                },
+                                color: Colors.green,
+                                colorBrightness: Brightness.light,
+                                child: const Text('取消'),
+                              ),
+                              new RaisedButton(
+                                  elevation: 0.0,
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                    Navigator.of(context).pop();
+                                    _onlineChat();
+                                  },
+                                  color: Colors.green,
+                                  colorBrightness: Brightness.light,
+                                  child: const Text('确定'))
+                            ]))
+                  ]);
+            });
+      } else{
         _userTabContent = UserDtailTabContent(
             tag: _tabs[_currentIndex].text, userDetail:_userData);
       }

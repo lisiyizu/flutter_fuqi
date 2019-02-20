@@ -55,7 +55,7 @@ class questionPage extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: <Widget>[
-                _buildTaskItem(Colors.blue,"问:夫妻币有什么用?,如何获得?","答:查看一个联系方式或者聊天需要消耗一枚夫妻币,方式一:邀请夫妻加入,填写你的邀请码,即可获赠5枚夫妻币,方式二:联系客服充值,方式三:认证夫妻,赠送一个月VIP"),
+                _buildTaskItem(Colors.blue,"问:夫妻币有什么用?,如何获得?","答:查看一个联系方式需要消耗1枚夫妻币,在线聊天和看91视频需要消耗10枚夫妻币,方式一:邀请夫妻加入,填写你的邀请码,即可获赠5枚夫妻币,方式二:联系客服充值,方式三:认证夫妻,赠送一个月VIP"),
                 _buildTaskItem(Colors.yellow,"问:在哪里获得我的邀请码","答:点击我->推广赚取夫妻币"),
                 _buildTaskItem(Colors.green,"问:如何改头像","答:点击发布->修改头像"),
                 _buildTaskItem(Colors.grey,"问:91视频在哪里看","答:点击发现->91视频"),
