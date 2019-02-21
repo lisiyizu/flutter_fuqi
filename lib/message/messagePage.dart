@@ -26,12 +26,7 @@ class _messagePageState extends State<messagePage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(tool.bGetNewConversation){
-      _getConversations();//每次都获取最新数据
-    }else{
-      _conversations = tool.converstation;
-      _mConversation = Conversation.parseConversations(tool.converstation);
-    }
+    _getConversations();//每次都获取最新数据
   }
 
   _getConversations() async {
@@ -44,8 +39,14 @@ class _messagePageState extends State<messagePage> {
           _mConversation = Conversation.parseConversations(_conversations);
         });
         tool.converstation = _conversations;
+        if(_mConversation == null){
+          _mConversation = [];
+        }
+        if(_mConversation.length == 0){
+          tool.showToast("您没有任何聊天记录");
+        }
       }
-      tool.bGetNewConversation = false;//不再获取新的conversation
+      //tool.bGetNewConversation = false;//不再获取新的conversation
     }on DioError catch(e) {
       if (e.response != null && e.response.statusCode == 404){
         tool.showToast("已显示全部数据");
