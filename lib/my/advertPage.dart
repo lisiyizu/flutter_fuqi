@@ -85,6 +85,14 @@ class advertPage extends StatelessWidget{
                     ),
                   ),
                   Container(
+                      padding: EdgeInsets.only(left: 5.0),
+                      child: Text('邀请码:${tool.getMyAdvertCode()}',style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40.0,
+                      ),)
+                  ),
+                  Container(
                     padding: EdgeInsets.only(top:20.0,bottom: 5.0),
                     child:Text('免费的素质夫妻交友APP,拒绝嘴炮,欢迎真实夫妻',textAlign:TextAlign.center,style: TextStyle(
                         color: Colors.blue,
@@ -92,14 +100,6 @@ class advertPage extends StatelessWidget{
                         fontSize: 25.0
                     ),
                     ),
-                  ),
-                  Container(
-                      padding: EdgeInsets.only(left: 5.0),
-                      child: Text('专属邀请码:${tool.getMyAdvertCode()}',style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 40.0,
-                      ),)
                   ),
                 ],
               ),
