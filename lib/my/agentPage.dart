@@ -109,7 +109,7 @@ class _agentPageState extends State<agentPage>{
                       _buildTaskItem(Colors.blue,"问:代理商怎么获取收益","答:邀请一个好友注册,可折现1元,您邀请的好友开通会员,平台给您返现25%的会员价"),
                       _buildTaskItem(Colors.green,"问:代理商有什么要求没有","答:您需要向客服证明您在夫妻交友行业拥有大量的资源,比如众多QQ群"),
                       _buildTaskItem(Colors.orange,"问:如何成为代理商","答:点击我-联系客服,向客服申请即可"),
-                      _buildTaskItem(Colors.yellow,"问:夫妻之家什么时候付款","答:加客服微信,每当有您邀请的会员开通时,立即支付25%会员价,当您成为代理商后重新点击本页面,可实时获取您的邀请人数,随时找客服折现"),
+                      _buildTaskItem(Colors.yellow,"问:夫妻之家什么时候付款","答:每当有您邀请的会员开通时,立即支付25%会员价,当您成为代理商后重新点击本页面,可实时获取您的邀请人数,随时找客服折现"),
                     ],
                   )
               )],
