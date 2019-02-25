@@ -177,7 +177,7 @@ class _SignUpPageState extends State<SignUpPage> {
           msg = e.response.data['non_field_errors'][0];
           Navigator.of(context).pop();
         } else {
-          msg = "注册失败,请正确填写每一项内容并检查长度是否超长";
+          msg = "注册失败,请正确填写每一项内容,简介和用户名最好不要有表情等特殊字符,如果仍然失败,用户名请不要用中文";
         }
       } else {
         msg = "注册失败,请稍后再试";

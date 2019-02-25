@@ -8,6 +8,7 @@ import 'package:flutter_fuqi/my/vipPage.dart';
 import 'package:flutter_fuqi/my/kefuPage.dart';
 import 'package:flutter_fuqi/my/questionPage.dart';
 import 'package:flutter_fuqi/my/softwarePage.dart';
+import 'package:flutter_fuqi/my/agentPage.dart';
 
 
 class myInfoPage extends StatefulWidget {
@@ -20,8 +21,8 @@ class myInfoPage extends StatefulWidget {
 }
 
 class _myInfoPageState extends State<myInfoPage> {
-  var titles = ["常见问题(必读)","我的资料", "我的钱包", "推广赚夫妻币", "VIP权限说明","联系客服","软件更新","退出登录"];
-  var icons = [0xe69c,0xe634,0xe600,0xe622,0xe614,0xe635,0xe625,0xe799];
+  var titles = ["常见问题(必读)","代理商赚钱","我的资料", "我的钱包", "推广赚夫妻币", "VIP权限说明","联系客服","软件更新","退出登录"];
+  var icons = [0xe69c,0xe717,0xe634,0xe600,0xe622,0xe614,0xe635,0xe625,0xe799];
   static const double IMAGE_ICON_WIDTH = 30.0;
   static const double ARROW_ICON_WIDTH = 16.0;
   var titleTextStyle = new TextStyle(fontSize: 16.0);
@@ -100,6 +101,10 @@ class _myInfoPageState extends State<myInfoPage> {
       Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
         return softwarePage();
       }));
+    }else if(title == "代理商赚钱"){
+      Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
+        return agentPage();
+      }));
     }
   }
   _renderRow(i) {
@@ -165,7 +170,7 @@ class _myInfoPageState extends State<myInfoPage> {
           new Expanded(
               child: new Text(
                 title,
-                style: i==0 ? firstTextStyle:titleTextStyle,
+                style: (i==0 || i == 1)? firstTextStyle:titleTextStyle,
                 textAlign: TextAlign.left,
               )),
           Icon(IconData(0xe756,fontFamily: Constants.IconFontFamily)),
