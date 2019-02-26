@@ -12,6 +12,7 @@ import 'package:flutter_fuqi/discover/videoItem.dart';
 
 
 final List<Tab> _myTabs = <Tab>[
+  Tab(text: '线下活动'),
   Tab(text: '认证夫妻'),
   Tab(text: '91视频'),
   Tab(text: '论坛'),
@@ -20,6 +21,7 @@ final List<Tab> _myTabs = <Tab>[
 ];
 
 List<String> _allPages=[
+  "activity",
   "identify",
   "91",
   "bbs",

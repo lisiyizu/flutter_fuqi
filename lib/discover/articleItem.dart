@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_fuqi/modal/articleData.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
-import 'package:flutter_fuqi/discover/articleDetail.dart';
+import 'package:flutter_fuqi/discover/articleOtherDetail.dart';
+import 'package:flutter_fuqi/discover/activityArticle.dart';
 
 
 class articleItem extends StatelessWidget{
@@ -28,7 +29,12 @@ class articleItem extends StatelessWidget{
         child: GestureDetector(
           onTap: (){
             Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
-              return articleDetail(tag:tag,mData: mData);
+              if(tag == "activity"){
+                return activityDetail(mData: mData, tag: tag);
+              }else{
+                return articleOtherDetail(tag:tag,mData: mData);
+              }
+
             }));
           },
           child: Row(

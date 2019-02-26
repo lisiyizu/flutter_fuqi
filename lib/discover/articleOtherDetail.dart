@@ -8,13 +8,13 @@ import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:dio/dio.dart';
 
-class articleDetail extends StatefulWidget{
+class articleOtherDetail extends StatefulWidget{
 
   articleData mData;
   String tag;
 
 
-  articleDetail({Key key,@required this.mData,@required this.tag}):super(key:key);
+  articleOtherDetail({Key key,@required this.mData,@required this.tag}):super(key:key);
 
   @override
   _articleDetailState createState() {
@@ -24,7 +24,7 @@ class articleDetail extends StatefulWidget{
 
 }
 
-class _articleDetailState extends State<articleDetail> with TickerProviderStateMixin {
+class _articleDetailState extends State<articleOtherDetail> with TickerProviderStateMixin {
   List<String> _urls = [];
   List<Widget> _imagePages = [];
   TabController _controller;
@@ -43,7 +43,15 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
     if (widget.mData.head_img3.contains('media/uploads/couple.jpg') == false){
       _urls.add(widget.mData.head_img3);
     }
-
+    if (widget.mData.head_img3.contains('media/uploads/couple.jpg') == false){
+      _urls.add(widget.mData.head_img3);
+    }
+    if (widget.mData.head_img4.contains('media/uploads/couple.jpg') == false){
+      _urls.add(widget.mData.head_img4);
+    }
+    if (widget.mData.head_img5.contains('media/uploads/couple.jpg') == false){
+      _urls.add(widget.mData.head_img5);
+    }
     _urls.forEach((String url) {
 
       Widget avator = tool.getCacheImage(url: url,height: Constants.bannerImageHeight,fit:BoxFit.contain );
@@ -71,9 +79,9 @@ class _articleDetailState extends State<articleDetail> with TickerProviderStateM
     Widget content;
     if (_tabs[_currentIndex].text == '文章详情'){
       if((tool.myUserData['profile'] == '普通会员' || tool.myUserData['profile'] == '高级VIP会员') && widget.tag == 'qq' && _localData.is_free == false){
-        content = Text("内容:权限不够,只有钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
+        content = Text("权限不够,只有钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
       }else{
-        content = Text("内容:${_localData.content}");
+        content = Text("${_localData.content}");
       }
         return ListView(
           children: <Widget>[

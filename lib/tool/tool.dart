@@ -40,6 +40,7 @@ class tool {
     Map(),
     Map(),
     Map(),
+    Map(),
   ];
 
   //聊天信息
