@@ -23,12 +23,12 @@ class videoItem extends StatelessWidget{
       //实时获取数据
       //await tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
       //权限检查
-      if(tool.myUserData['free_count']>=10){
-        free_count = tool.myUserData['free_count']-10;
+      if(tool.myUserData['free_count']>=3){
+        free_count = tool.myUserData['free_count']-3;
         String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
         response = await dioTool.dio.patch(url,data:{'free_count':free_count});
         tool.myUserData = response.data;
-        tool.showToast("夫妻币减10");
+        tool.showToast("夫妻币减3");
         Navigator.of(context).pop();
         Navigator.of(context).push(new MaterialPageRoute(builder: (_) {
           return videoPlayer(mData:mData);
@@ -69,7 +69,7 @@ class videoItem extends StatelessWidget{
             Alert(
               context: context,
               type: AlertType.warning,
-              title: "观看需要消耗10枚夫妻币",
+              title: "观看需要消耗3枚夫妻币",
               desc: "您当前的夫妻币是:${tool.myUserData['free_count']}",
               buttons: [
                 DialogButton(
