@@ -71,16 +71,18 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
       //实时获取数据
       //tool.getMyUserInfo(context:context,id:tool.myUserData['id']);
       //权限检查
-      if(tool.myUserData['free_count']>1){
+      if(tool.myUserData['free_count']>1 || _userData['id'] == tool.myUserData['id']){
         tabContent = UserDtailTabContent(tag: _tabs[_currentIndex].text, userDetail: _userData);
         setState(() {
           _userTabContent = tabContent;
         });
-        tool.showToast("夫妻币减2");
-        int free_count = tool.myUserData['free_count']-2;
-        String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
-        response = await dioTool.dio.patch(url,data:{'free_count':free_count});
-        tool.myUserData = response.data;
+        if(_userData['id'] != tool.myUserData['id']){
+          tool.showToast("夫妻币减2");
+          int free_count = tool.myUserData['free_count']-2;
+          String url = '${Constants.host}/app/userDetail/${tool.myUserData['id']}/';
+          response = await dioTool.dio.patch(url,data:{'free_count':free_count});
+          tool.myUserData = response.data;
+        }
       }else{
         tabContent = Text("您的夫妻币不足,请在我->常见问题中,查看如何获取夫妻币");
         setState(() {
@@ -152,7 +154,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
             context: context,
             builder: (BuildContext context) {
               return SimpleDialog(
-                  title: Text('需要消耗2枚夫妻币'),
+                  title: _userData['id'] == tool.myUserData['id'] ? Text('查看自己无需消耗夫妻币'):Text('需要消耗2枚夫妻币'),
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.only(left: 25.0),
