@@ -82,7 +82,7 @@ class Constants {
   static const webUrl= 'https://www.fuqi.site';//官方网址
   static const gongzhonghao = '福气之家';
   static double bannerImageHeight = 150.0; //轮播图高度
-  static const String version = "1.2";//当前系统版本
+  static const String version = "1.3";//当前系统版本
   static const downloadUrl = 'www.fqzj.site/down ';//下载地址
 }
 
