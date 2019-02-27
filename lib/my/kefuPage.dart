@@ -44,11 +44,11 @@ class kefuPage extends StatelessWidget{
                         Text(Constants.weixin)
                       ]),
                 ),
-                Divider(),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text('官方网站:${Constants.webUrl}'),
-                ),
+//                Divider(),
+//                Container(
+//                  alignment: Alignment.centerLeft,
+//                  child: Text('官方网站:${Constants.webUrl}'),
+//                ),
               ]),
         ),
       ),
