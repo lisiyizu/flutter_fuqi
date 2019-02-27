@@ -89,7 +89,7 @@ class _advertPageState extends State<advertPage>{
                             fontSize: 25.0
                         ),
                         ),
-                        Text('微信QQ扫码已屏蔽,请使用浏览器扫码',textAlign:TextAlign.center,style: TextStyle(
+                        Text('如果QQ微信无法扫码,请使用浏览器扫码',textAlign:TextAlign.center,style: TextStyle(
                             color: Colors.red,
                             fontWeight: FontWeight.bold,
                             fontSize: 25.0
@@ -98,7 +98,7 @@ class _advertPageState extends State<advertPage>{
                       ],
                     )
                   ),
-                  tool.getCacheImage(url:tool.downloadurl, width:200,height:200),
+                  tool.downloadurl== null ?Image.asset("assets/images/download.png",width: 200,height: 200,):tool.getCacheImage(url:tool.downloadurl, width:200,height:200),
                   //Image.asset("assets/images/download.png",width: 200,height: 200,),
                   Container(
                     padding: EdgeInsets.only(top: 5.0),
