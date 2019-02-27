@@ -7,10 +7,34 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:flutter_fuqi/constants.dart';
 
 
-class advertPage extends StatelessWidget{
+class advertPage extends StatefulWidget {
+
+  @override
+  _advertPageState createState() {
+    // TODO: implement createState
+    return _advertPageState();
+  }
+}
+
+
+
+
+
+class _advertPageState extends State<advertPage>{
   GlobalKey rootWidgetKey = GlobalKey();
   Uint8List pngBytes;
   var _imageFile;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _init();
+  }
+
+  void _init() async {
+
+  }
 
   void _saveImage() async {
     RenderRepaintBoundary boundary =
@@ -74,7 +98,8 @@ class advertPage extends StatelessWidget{
                       ],
                     )
                   ),
-                  Image.asset("assets/images/download.png",width: 200,height: 200,),
+                  tool.getCacheImage(url:tool.downloadurl, width:200,height:200),
+                  //Image.asset("assets/images/download.png",width: 200,height: 200,),
                   Container(
                     padding: EdgeInsets.only(top: 5.0),
                     child:Text('或打开${Constants.downloadUrl}',textAlign:TextAlign.center,style: TextStyle(

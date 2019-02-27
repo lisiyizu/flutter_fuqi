@@ -26,6 +26,9 @@ class tool {
 
   static bool bFirstLoginIn = false;//是否是第一次登录
 
+  //分享下载的二维码
+  static String downloadurl = "";
+
   //用户信息
   static List<Map> userPageDatas=[
     Map(),
@@ -95,6 +98,7 @@ class tool {
       version = response.data[0]['version'];
       info = response.data[0]['info'];
       bForce = response.data[0]['bForce'];
+      downloadurl = response.data[0]['download'];
       //强制更新
       if(bForce && version != Constants.version){
         Alert(
