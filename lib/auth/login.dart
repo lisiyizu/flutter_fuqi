@@ -23,11 +23,14 @@ class _LoginPageState extends State<LoginPage>{
   Response response;
   _login () async {
     try {
+      showDialog(
+          context: context, child: tool.getProgressIndicator(info: "登录中,请稍后..."));
       String url = "${Constants.host}/jwt_login/";
       response = await dioTool.dio.post(url, data: {
         'username': _userNameController.text,
         'password': _userPassController.text
       });
+      Navigator.of(context).pop();
       tool.showToast("登录成功");
       dioTool.setHeadToken(response.data['token']);
       await tool.prefs.setString('token', response.data['token']);
@@ -35,23 +38,28 @@ class _LoginPageState extends State<LoginPage>{
       //先记录id,否则后面获取用户信息时会错误
       tool.init(context);
     } on DioError catch (e) {
-      Alert(
-        context: context,
-        type: AlertType.info,
-        title: "登录失败",
-        desc: "用户名或密码错误",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "确定",
-              style: TextStyle(color: Colors.white, fontSize: 20),
+      Navigator.of(context).pop();
+      if(e.response!=null && e.response.statusCode == 400){
+        Alert(
+          context: context,
+          type: AlertType.info,
+          title: "登录失败",
+          desc: "用户名或密码错误",
+          buttons: [
+            DialogButton(
+              child: Text(
+                "确定",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.pop(context),
+              color: Color.fromRGBO(0, 179, 134, 1.0),
+              radius: BorderRadius.circular(0.0),
             ),
-            onPressed: () => Navigator.pop(context),
-            color: Color.fromRGBO(0, 179, 134, 1.0),
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
+          ],
+        ).show();
+      }else{
+        tool.showLongToast("网络异常,请稍后再试",5);
+      }
     }
   }
 
