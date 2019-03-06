@@ -12,8 +12,8 @@ import 'package:flutter_fuqi/discover/videoItem.dart';
 
 
 final List<Tab> _myTabs = <Tab>[
-  Tab(text: '线下活动'),
   Tab(text: '认证夫妻'),
+  Tab(text: '线下活动'),
   Tab(text: '91视频'),
   Tab(text: '论坛'),
   Tab(text: 'QQ群'),
@@ -21,8 +21,8 @@ final List<Tab> _myTabs = <Tab>[
 ];
 
 List<String> _allPages=[
-  "activity",
   "identify",
+  "activity",
   "91",
   "bbs",
   "qq",
@@ -190,7 +190,7 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
     if (this.mounted){
       if(ArticleData.length == 0){
         tool.showToast("您还没有发布自己的文章");
-        return;
+        //return;
       }
       setState(() {
         // 是否是加载更多数据
@@ -256,7 +256,7 @@ class _discoverPageState extends State<discoverPage> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    if (_articleDatas.length == 0) {
+    if (_articleDatas.length == 0 && _controller.index == 0) {
       return tool.getProgressIndicator();
     }else {
       return Scaffold(
