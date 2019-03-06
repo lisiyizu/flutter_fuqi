@@ -33,8 +33,6 @@ class _publishArticlePageState extends State<publishArticlePage> {
   Future<File> _imageFile;
   bool isLoading = false;
   String msg = "";
-  String title;
-  String desc;
 
   Widget getBody() {
     // 标题
