@@ -8,6 +8,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 
 
+
 class publishArticlePage extends StatefulWidget {
   String category;
   String title;
@@ -32,6 +33,8 @@ class _publishArticlePageState extends State<publishArticlePage> {
   Future<File> _imageFile;
   bool isLoading = false;
   String msg = "";
+  String title;
+  String desc;
 
   Widget getBody() {
     // 标题
@@ -267,6 +270,8 @@ class _publishArticlePageState extends State<publishArticlePage> {
       }
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {

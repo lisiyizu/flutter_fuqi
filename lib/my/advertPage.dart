@@ -45,7 +45,7 @@ class _advertPageState extends State<advertPage>{
     if (result){
       tool.showToast("推广码已保存至相册");
     }else{
-      tool.showToast("保存失败,请允许打开相册");
+      tool.showToast("保存失败,请直接截图");
     }
   }
 

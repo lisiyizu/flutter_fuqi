@@ -21,8 +21,8 @@ class myInfoPage extends StatefulWidget {
 }
 
 class _myInfoPageState extends State<myInfoPage> {
-  var titles = ["常见问题(必读)","VIP权限说明","我的资料", "我的钱包", "推广赚夫妻币","联系客服","代理商赚钱","软件更新","退出登录"];
-  var icons = [0xe69c,0xe614,0xe634,0xe600,0xe622,0xe635,0xe717,0xe625,0xe799];
+  var titles = ["常见问题(必读)","VIP权限说明","联系客服","我的资料", "我的钱包", "推广赚夫妻币","代理商赚钱","软件更新","退出登录"];
+  var icons = [0xe69c,0xe614,0xe635,0xe634,0xe600,0xe622,0xe717,0xe625,0xe799];
   static const double IMAGE_ICON_WIDTH = 30.0;
   static const double ARROW_ICON_WIDTH = 16.0;
   var titleTextStyle = new TextStyle(fontSize: 16.0);
@@ -88,9 +88,26 @@ class _myInfoPageState extends State<myInfoPage> {
         return vipPage();
       }));
     }else if(title == "联系客服"){
-      Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
-        return kefuPage();
-      }));
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: "充值须知",
+        desc: "1.夫妻币不能直接充值可以邀请好友获取,2客服只开会员,最低199一年,3.认证夫妻免费送一个月",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "我已知道",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
+                return kefuPage();
+              }));
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+          )],
+      ).show();
     }else if(title == "常见问题(必读)"){
       Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
         return questionPage();
@@ -170,7 +187,7 @@ class _myInfoPageState extends State<myInfoPage> {
           new Expanded(
               child: new Text(
                 title,
-                style: (i==0 || i == 1)? firstTextStyle:titleTextStyle,
+                style: (i < 3)? firstTextStyle:titleTextStyle,
                 textAlign: TextAlign.left,
               )),
           Icon(IconData(0xe756,fontFamily: Constants.IconFontFamily)),
