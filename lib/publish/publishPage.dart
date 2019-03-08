@@ -104,9 +104,29 @@ class _publishPageState extends State<publishPage>{
                       return publishDynamicPage();
                     }));
                 }else if(item.title == "我要改头像"){
-                      Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
-                        return publishHeadImagePage();
-                      }));
+                  title = "上传头像须知";
+                  desc = "发广告者封号,发漏点和联系方式者删头像";
+                  Alert(
+                    context: context,
+                    type: AlertType.warning,
+                    title: title,
+                    desc: desc,
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "我已知道",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                          Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
+                            return publishHeadImagePage();
+                          }));
+                        },
+                        color: Color.fromRGBO(0, 179, 134, 1.0),
+                      )
+                    ],
+                  ).show();
                 }
               },
             );
