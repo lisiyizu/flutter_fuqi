@@ -38,9 +38,6 @@ class _articleDetailState extends State<activityDetail> with TickerProviderState
     if (widget.mData.head_img3.contains('media/uploads/couple.jpg') == false) {
       _urls.add(widget.mData.head_img3);
     }
-    if (widget.mData.head_img3.contains('media/uploads/couple.jpg') == false) {
-      _urls.add(widget.mData.head_img3);
-    }
     if (widget.mData.head_img4.contains('media/uploads/couple.jpg') == false) {
       _urls.add(widget.mData.head_img4);
     }
