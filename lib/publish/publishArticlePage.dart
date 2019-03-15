@@ -177,7 +177,13 @@ class _publishArticlePageState extends State<publishArticlePage> {
       onTap: () {
         Navigator.of(context).pop();
         setState(() {
-          _imageFile = ImagePicker.pickImage(source: source,maxWidth:400,maxHeight: 400);
+          if(widget.category == '认证夫妻') {
+            _imageFile = ImagePicker.pickImage(
+                source: source, maxWidth: 500, maxHeight: 500);
+          }else{
+            _imageFile = ImagePicker.pickImage(
+                source: source, maxWidth: 400, maxHeight: 400);
+          }
         });
       },
     );
