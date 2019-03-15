@@ -62,7 +62,7 @@ class _publishArticlePageState extends State<publishArticlePage> {
           )
       ),
       maxLines: 6,
-      maxLength: 150,
+      maxLength: 250,
       controller: _contentController,
     );
     // gridView用来显示选择的图片
