@@ -21,8 +21,8 @@ class myInfoPage extends StatefulWidget {
 }
 
 class _myInfoPageState extends State<myInfoPage> {
-  var titles = ["常见问题(必读)","VIP权限说明","联系客服","我的资料", "我的钱包", "推广赚夫妻币","代理商赚钱","软件更新","退出登录"];
-  var icons = [0xe69c,0xe614,0xe635,0xe634,0xe600,0xe622,0xe717,0xe625,0xe799];
+  var titles = ["常见问题(必读)","VIP权限说明","联系客服","我的资料", "我的钱包", "推广赚夫妻币","软件更新","退出登录"];
+  var icons = [0xe69c,0xe614,0xe635,0xe634,0xe600,0xe622,0xe625,0xe799];
   static const double IMAGE_ICON_WIDTH = 30.0;
   static const double ARROW_ICON_WIDTH = 16.0;
   var titleTextStyle = new TextStyle(fontSize: 16.0);

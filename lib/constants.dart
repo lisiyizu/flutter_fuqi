@@ -77,9 +77,9 @@ class Constants {
   static const host='https://www.fqzj.site';
   static const defaultImage = 'assets/images/couple.jpg';
   static const qq = '2123108929(经常在线)';
-  static const qq2 = '1663084600(备用1,上面加不上,加这个)';
-  static const qq3 = '3337547411(备用2,上面加不上,加这个)';
-  static const weixin = 'fuqi9970(备用3,上面加不上,加这个)';
+  static const qq2 = '1663084600(经常在线)';
+  static const qq3 = '3337547411(备用1)';
+  static const weixin = 'fuqi9970(备用2,不常在线,请加QQ)';
   static const webUrl= 'https://www.fuqi.site';//官方网址
   static const gongzhonghao = '福气之家';
   static double bannerImageHeight = 150.0; //轮播图高度
