@@ -75,8 +75,8 @@ class _articleDetailState extends State<articleOtherDetail> with TickerProviderS
   _getArticleTabContent(){
     Widget content;
     if (_tabs[_currentIndex].text == '文章详情'){
-      if((tool.myUserData['profile'] == '普通会员' || tool.myUserData['profile'] == '高级VIP会员') && widget.tag == 'qq' && _localData.is_free == false){
-        content = Text("权限不够,只有钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
+      if((tool.myUserData['profile'] == '普通会员' || tool.myUserData['profile'] == '高级VIP会员') && widget.tag == 'qq' && _localData.is_free == false && tool.myUserData['is_identification'] == false){
+        content = Text("权限不够,只有认证夫妻和钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
       }else{
         content = Text("${_localData.content}");
       }
