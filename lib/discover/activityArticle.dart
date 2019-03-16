@@ -96,11 +96,7 @@ class _articleDetailState extends State<activityDetail> with TickerProviderState
         children: <Widget>[
           Container(
               padding: EdgeInsets.only(left: 20.0, top: 15.0),
-              child: Row(
-                children: <Widget>[
-                  Text("${_localData.qq}"),
-                ],
-              )
+              child: Text("${_localData.qq}"),
           ),
         ],
       );
@@ -109,12 +105,8 @@ class _articleDetailState extends State<activityDetail> with TickerProviderState
         children: <Widget>[
           Container(
               padding: EdgeInsets.only(left: 20.0, top: 15.0),
-              child: Row(
-                children: <Widget>[
-                  Text("${_localData.join}"),
-                ],
+              child: Text("${_localData.join}"),
               )
-          ),
         ],
       );
     }
