@@ -180,7 +180,7 @@ class _SignUpPageState extends State<SignUpPage> {
           msg = "注册失败,请正确填写每一项内容,简介和用户名最好不要有表情等特殊字符,如果仍然失败,用户名请不要用中文";
         }
       } else {
-        msg = "注册失败,请稍后再试";
+        msg = "机器忙碌,请稍后再试";
       }
       msg += ',错误编码:${e.response.statusCode}';
       tool.showLongToast(msg, 5);
@@ -320,8 +320,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     TextField(
                       decoration: InputDecoration(
-                          labelText: "昵称/用户名/登录账户",
-                          hintText: '请输入你的昵称/用户名/登录账户',
+                          labelText: "登录账户/用户名/昵称",
+                          hintText: '请输入你的登录账户/用户名/昵称',
                           labelStyle: TextStyle(
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
