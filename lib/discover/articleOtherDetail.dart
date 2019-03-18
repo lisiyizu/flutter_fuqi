@@ -75,10 +75,14 @@ class _articleDetailState extends State<articleOtherDetail> with TickerProviderS
   _getArticleTabContent(){
     Widget content;
     if (_tabs[_currentIndex].text == '文章详情'){
-      if(widget.tag == 'qq' && (tool.myUserData['profile'] == '钻石VIP会员' || tool.myUserData['profile'] == '皇冠VIP会员' || tool.myUserData['profile'] == '至尊VIP会员' || tool.myUserData['is_identification'] == true)){
+      if(widget.tag != 'qq'){
         content = Text("${_localData.content}");
       }else{
-        content = Text("权限不够,只有认证夫妻和钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
+        if(tool.myUserData['profile'] == '钻石VIP会员' || tool.myUserData['profile'] == '皇冠VIP会员' || tool.myUserData['profile'] == '至尊VIP会员' || tool.myUserData['is_identification'] == true){
+          content = Text("${_localData.content}");
+        }else{
+          content = Text("权限不够,只有认证夫妻和钻石及以上VIP可查看",style:TextStyle(color: Colors.red));
+        }
       }
         return ListView(
           children: <Widget>[
