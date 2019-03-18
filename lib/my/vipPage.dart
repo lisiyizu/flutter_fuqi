@@ -24,7 +24,7 @@ class vipPage extends StatelessWidget {
       for (int j = 0; j < _all[i].length; j++) {
         var color;
         if(_all[i][0] == "价格" || _all[i][0] == "组织活动" || _all[i][0] == "夫妻币"
-            || _all[i][0] == "推荐夫妻" || _all[i][0] == "有效期" || _all[i][0] == "夫妻推荐"||_all[i][j] == "不行"){
+            || _all[i][0] == "有效期" || _all[i][0] == "加认证夫妻群"||_all[i][j] == "不行"){
           color = Colors.red;
         }
         widgetList.add(
