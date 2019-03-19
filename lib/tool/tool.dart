@@ -8,6 +8,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_fuqi/modal/userData.dart';
 import 'package:flutter_fuqi/modal/articleData.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class tool {
 
@@ -271,6 +272,16 @@ class tool {
       ],
     ).show();
   }
+
+  //页面调整
+  static launchURL({@required String url}) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw '无法启动 $url';
+    }
+  }
+
 }
 
 
