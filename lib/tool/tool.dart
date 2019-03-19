@@ -5,8 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:flutter_fuqi/modal/userData.dart';
-import 'package:flutter_fuqi/modal/articleData.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -29,6 +27,13 @@ class tool {
 
   //分享下载的二维码
   static String downloadurl;
+
+  //QQ客服
+  static String qq1 = "网络异常,请稍后再来";
+  static String qq2 = "网络异常,请稍后再来";
+  static String qq3 = "网络异常,请稍后再来";
+  //微信客服
+  static String weixin = "网络异常,请稍后再来";
 
   //用户信息
   static List<Map> userPageDatas=[
@@ -67,6 +72,46 @@ class tool {
     tool.checkSysVersion(context);
   }
 
+  //获取客服
+  static getKefu({@required id}) {
+     if(myUserData == null){
+       if(id == 1){
+         return qq1;
+       }else if(id == 2){
+         return qq2;
+       }else if(id == 3){
+         return qq3;
+       }else {
+         return weixin;
+       }
+     }
+     int num = myUserData['id'] % 3;
+     String _qq1 = "";
+     String _qq2 = "";
+     String _qq3 = "";
+     if(num == 0){
+       _qq1 = qq1;
+       _qq2 = qq2;
+       _qq3 = qq3;
+     }else if(num == 1){
+       _qq1 = qq2;
+       _qq2 = qq3;
+       _qq3 = qq1;
+     }else{
+       _qq1 = qq3;
+       _qq2 = qq1;
+       _qq3 = qq2;
+     }
+     if(id == 1){
+       return _qq1;
+     }else if(id == 2){
+       return _qq2;
+     }else if(id == 3){
+       return _qq3;
+     }else{
+       return weixin;
+     }
+  }
   static getMyUserInfo({id:-1,BuildContext context}) async {
     assert(prefs != null);
     var response;
@@ -100,6 +145,10 @@ class tool {
       info = response.data[0]['info'];
       bForce = response.data[0]['bForce'];
       downloadurl = response.data[0]['download'];
+      qq1 = response.data[0]['qq1'];
+      qq2 = response.data[0]['qq2'];
+      qq3 = response.data[0]['qq3'];
+      weixin = response.data[0]['weixin'];
       //强制更新
       if(bForce && version != Constants.version){
         Alert(

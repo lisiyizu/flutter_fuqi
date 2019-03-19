@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fuqi/constants.dart';
+import 'package:flutter_fuqi/tool/tool.dart';
 
 class kefuPage extends StatelessWidget{
   @override
@@ -21,7 +22,7 @@ class kefuPage extends StatelessWidget{
                       children: <Widget>[
                         Icon(IconData(0xe605,fontFamily: Constants.IconFontFamily)),
                         Container(width: 10.0,),
-                        Text(Constants.qq)
+                        Text(tool.getKefu(id: 1))
                       ]),
                 ),
                 Divider(),
@@ -31,7 +32,7 @@ class kefuPage extends StatelessWidget{
                       children: <Widget>[
                         Icon(IconData(0xe605,fontFamily: Constants.IconFontFamily)),
                         Container(width: 10.0,),
-                        Text(Constants.qq2)
+                        Text(tool.getKefu(id: 2))
                       ]),
                 ),
                 Divider(),
@@ -41,7 +42,7 @@ class kefuPage extends StatelessWidget{
                       children: <Widget>[
                         Icon(IconData(0xe605,fontFamily: Constants.IconFontFamily)),
                         Container(width: 10.0,),
-                        Text(Constants.qq3)
+                        Text(tool.getKefu(id: 3))
                       ]),
                 ),
                 Divider(),
@@ -51,7 +52,7 @@ class kefuPage extends StatelessWidget{
                       children: <Widget>[
                         Icon(IconData(0xe768,fontFamily: Constants.IconFontFamily)),
                         Container(width: 10.0,),
-                        Text(Constants.weixin)
+                        Text(tool.getKefu(id: 4))
                       ]),
                 ),
 //                Divider(),
