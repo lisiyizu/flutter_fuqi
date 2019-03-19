@@ -124,7 +124,24 @@ class _myInfoPageState extends State<myInfoPage> {
         return agentPage();
       }));
     }else if(title == "potato火爆交流群"){
-      tool.launchURL(url: Constants.potato);
+      Alert(
+        context: context,
+        type: AlertType.warning,
+        title: "potato加群须知",
+        desc: "1.打开页面后请先下载potato App,然后点击+View Group 2.苹果版本请使用Safari浏览器",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "我已知道",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+              tool.launchURL(url: Constants.potato);
+            },
+            color: Color.fromRGBO(0, 179, 134, 1.0),
+          )],
+      ).show();
     }
   }
   _renderRow(i) {
