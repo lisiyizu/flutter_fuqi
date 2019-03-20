@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:flutter_fuqi/dio/dio.dart';
-import 'package:flutter_fuqi/fuqi/indicator_viewpager.dart';
 import 'package:flutter_fuqi/fuqi/user_info_item.dart';
 import 'package:flutter_fuqi/fuqi/user_detail_tab_content.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:flutter_fuqi/message/chatPage.dart';
+import 'package:flutter_fuqi/common/common.dart';
 
 
 class UserDetail extends StatefulWidget{
@@ -28,7 +28,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
     Tab(text: '联系方式'),
     Tab(text: '在线聊天'),
   ];
-  List<Widget> _imagePages = [];
+  List<String> tempImage = [];
   TabController _controller;
   List<String> _urls = [];
   var _userTabContent;
@@ -250,7 +250,7 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
 
   _getBannerImage(){
     var temp = _userData['user_image'];
-    List<String> tempImage = [];
+    tempImage = [];
     if (temp.length == 0){
       tempImage.add(_userData['head_img']);//没有图片则使用默认图片
     }else{
@@ -258,16 +258,6 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
         tempImage.add(temp[i]['img']);
       }
     }
-    tempImage.forEach((String url) {
-      Widget avator = tool.getCacheImage(url:url, height:Constants.bannerImageHeight,fit:BoxFit.contain);
-      _imagePages.add(
-          Container(
-            color: Colors.black.withAlpha(900),
-            child: ConstrainedBox(
-                constraints: const BoxConstraints.expand(),
-                child: avator),
-          ));
-    });
   }
 
   _getUserDetail() async {
@@ -348,16 +338,16 @@ class _UserDetailState extends State<UserDetail> with TickerProviderStateMixin {
       return tool.getProgressIndicator();
     }else{
       return new Scaffold(
-          backgroundColor: new Color.fromARGB(255, 242, 242, 245),
+          appBar: AppBar(
+            title: Text(_userData['name']+"的个人资料"),
+            centerTitle: true,
+          ),
           body: new Stack(
             children: <Widget>[
               new Container(
                   child: new Column(
                     children: <Widget>[
-                      new SizedBox.fromSize(
-                        size:  Size.fromHeight(Constants.bannerImageHeight),
-                        child: new IndicatorViewPager(_imagePages),
-                      ),
+                      buildBanner(context,tempImage),
                       new Container(
                         color: Colors.white,
                         child: new Column(

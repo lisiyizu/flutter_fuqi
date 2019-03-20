@@ -7,6 +7,7 @@ import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_fuqi/common/common.dart';
 
 class tool {
 
@@ -278,10 +279,10 @@ class tool {
     }
   }
 
-  static getCacheImage({@required String url,double width,double height,fit}){
+  static getCacheImage({@required String url,double width,double height,fit,bool bProcess:false}){
     return CachedNetworkImage(
       imageUrl: url,
-      placeholder: Image.asset("assets/images/couple.jpg",width:width,height:height,fit:fit),
+      placeholder: bProcess ? ProgressView():Image.asset("assets/images/couple.jpg",width:width,height:height,fit:fit),
       errorWidget: Icon(Icons.error),
       width: width,
       height:height,

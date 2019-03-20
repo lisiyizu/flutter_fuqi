@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fuqi/modal/articleData.dart';
 import 'package:flutter_fuqi/constants.dart';
-import 'package:flutter_fuqi/fuqi/indicator_viewpager.dart';
 import 'package:flutter_fuqi/dio/dio.dart';
 import 'package:flutter_fuqi/tool/tool.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_fuqi/common/common.dart';
 
 class activityDetail extends StatefulWidget{
 
@@ -44,18 +44,6 @@ class _articleDetailState extends State<activityDetail> with TickerProviderState
     if (widget.mData.head_img5.contains('media/uploads/couple.jpg') == false) {
       _urls.add(widget.mData.head_img5);
     }
-    _urls.forEach((String url) {
-      Widget avator = tool.getCacheImage(
-          url: url, height: Constants.bannerImageHeight, fit: BoxFit.contain);
-
-      _imagePages.add(
-          Container(
-            color: Colors.black.withAlpha(900),
-            child: ConstrainedBox(
-                constraints: const BoxConstraints.expand(),
-                child: avator),
-          ));
-    });
   }
 
   _onChanged() {
@@ -170,10 +158,7 @@ class _articleDetailState extends State<activityDetail> with TickerProviderState
         body: Container(
             child: Column(
               children: <Widget>[
-                new SizedBox.fromSize(
-                  size: Size.fromHeight(Constants.bannerImageHeight),
-                  child: new IndicatorViewPager(_imagePages),
-                ),
+                buildBanner(context,_urls),
                 Divider(),
                 TabBar(
                   indicatorWeight: 3.0,
