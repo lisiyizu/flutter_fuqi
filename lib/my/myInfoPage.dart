@@ -127,7 +127,7 @@ class _myInfoPageState extends State<myInfoPage> {
       Alert(
         context: context,
         type: AlertType.warning,
-        title: "potato加群须知",
+        title: "potato加群须知(客服不管,勿扰)",
         desc: "1.打开页面后请先下载potato App,然后点击+View Group 2.苹果版本请使用Safari浏览器",
         buttons: [
           DialogButton(

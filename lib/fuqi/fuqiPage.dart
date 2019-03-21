@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_refresh/flutter_refresh.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_fuqi/constants.dart';
-import 'package:flutter_fuqi/modal/userData.dart';
 import 'package:flutter_fuqi/fuqi/user_info_item.dart';
 import 'package:flutter_fuqi/fuqi/locate.dart';
 import 'package:flutter_fuqi/tool/tool.dart';

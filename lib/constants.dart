@@ -145,9 +145,9 @@ class TaskManager {
 class updateManager {
   /// A set of tasks
   static List<Task> tasksList = [
-    Task(Colors.green, '升级方式一', '找客服要最新软件'),
-    Task(Colors.blue, '升级方式二', '扫二维码下载'),
-    Task(Colors.red, '升级方式三', '浏览器下载'),
+    Task(Colors.green, '升级方式一', '苹果手机用户'),
+    Task(Colors.blue, '升级方式二', '非苹果手机用户'),
+    Task(Colors.red, '更新异常', '联系客服'),
   ];
 
 }

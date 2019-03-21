@@ -28,6 +28,8 @@ class tool {
 
   //分享下载的二维码
   static String downloadurl;
+  //更新的地址
+  static String updateUrl;
 
   //QQ客服
   static String qq1 = "网络异常,请稍后再来";
@@ -150,6 +152,7 @@ class tool {
       qq2 = response.data[0]['qq2'];
       qq3 = response.data[0]['qq3'];
       weixin = response.data[0]['weixin'];
+      updateUrl = response.data[0]['down_url'];
       //强制更新
       if(bForce && version != Constants.version){
         Alert(

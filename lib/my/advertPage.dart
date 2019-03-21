@@ -98,7 +98,7 @@ class _advertPageState extends State<advertPage>{
                       ],
                     )
                   ),
-                  tool.downloadurl== null ?Image.asset("assets/images/download.png",width: 200,height: 200,):tool.getCacheImage(url:tool.downloadurl, width:200,height:200),
+                  tool.downloadurl== null ?Image.asset("assets/images/download.png",width: 200,height: 200,):tool.getCacheImage(url:tool.downloadurl, width:200,height:200,bProcess: true),
                   //Image.asset("assets/images/download.png",width: 200,height: 200,),
                   Container(
                     padding: EdgeInsets.only(top: 5.0),

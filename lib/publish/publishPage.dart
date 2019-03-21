@@ -7,6 +7,7 @@ import 'package:flutter_fuqi/publish/publishDynamicPage.dart';
 import 'package:flutter_fuqi/publish/publishImagePage.dart';
 import 'package:flutter_fuqi/publish/publishHeadImg.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_fuqi/tool/tool.dart';
 
 
 class publishPage extends StatefulWidget{
@@ -48,7 +49,25 @@ class _publishPageState extends State<publishPage>{
             return GestureDetector(
               child: TaskWidget(task: item),
               onTap: (){
-                if(item.title == "我要认证"){
+                if(tool.myUserData['is_lock']){
+                  Alert(
+                    context: context,
+                    type: AlertType.warning,
+                    title: "您的账户已经被锁定",
+                    desc: "由于您多次违规发布个人信息或漏点头像或被投诉等原因您已经被禁止发布任何内容",
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "我已知道",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        color: Color.fromRGBO(0, 179, 134, 1.0),
+                      )],
+                  ).show();
+                }else if(item.title == "我要认证"){
                   title = "认证须知";
                   desc = "1.女方手持,无需露脸 2.纸上写夫妻之家四个字和你的ID 3.不符合者将被删帖";
                   Alert(

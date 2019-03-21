@@ -43,6 +43,17 @@ class _softwarePageState extends State<softwarePage>{
           buttons: [
             DialogButton(
               child: Text(
+                "暂不更新",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              onPressed: () => Navigator.of(context).pop(),
+              gradient: LinearGradient(colors: [
+                Color.fromRGBO(116, 116, 191, 1.0),
+                Color.fromRGBO(52, 138, 199, 1.0)
+              ]),
+            ),
+            DialogButton(
+              child: Text(
                 "立即更新",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
@@ -52,17 +63,6 @@ class _softwarePageState extends State<softwarePage>{
               },
               color: Color.fromRGBO(0, 179, 134, 1.0),
             ),
-            DialogButton(
-              child: Text(
-                "暂不更新",
-                style: TextStyle(color: Colors.white, fontSize: 20),
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-              gradient: LinearGradient(colors: [
-                Color.fromRGBO(116, 116, 191, 1.0),
-                Color.fromRGBO(52, 138, 199, 1.0)
-              ]),
-            )
           ],
         ).show();
       }else{

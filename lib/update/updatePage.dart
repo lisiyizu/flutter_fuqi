@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_fuqi/publish/taskItem.dart';
-import 'package:flutter_fuqi/publish/publishArticlePage.dart';
 import 'package:flutter_fuqi/constants.dart';
 import 'package:flutter_fuqi/modal/task.dart';
 import 'package:flutter_fuqi/my/kefuPage.dart';
-import 'package:flutter_fuqi/update/erweimaUpdate.dart';
-import 'package:flutter_fuqi/update/urlUpdate.dart';
+import 'package:flutter_fuqi/tool/tool.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class updatePage extends StatefulWidget{
   @override
@@ -41,15 +40,30 @@ class _updatePageState extends State<updatePage>{
             return GestureDetector(
               child: TaskWidget(task: item),
               onTap: (){
-                Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
-                  if (item.title == "升级方式一"){
+                if (item.title == "更新异常"){
+                  Navigator.push(context,MaterialPageRoute(builder: (BuildContext ctx){
                     return kefuPage();
-                  }else if(item.title == "升级方式二"){
-                    return erweimaUpdate();
-                  }else if(item.title == "升级方式三"){
-                    return urlUpdate();
-                  }
-                }));
+                  }));
+                }else if(item.title == "升级方式一"){
+                  Alert(
+                    context: context,
+                    type: AlertType.warning,
+                    title: "苹果手机信任和下载问题",
+                    desc: "1.请在苹果自带Safari浏览器打开 2.信任在设置-通用-设备管理(或设备描述等)中设置",
+                    buttons: [
+                      DialogButton(
+                        child: Text(
+                          "我已知道",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                        onPressed: () => tool.launchURL(url: tool.updateUrl),
+                        color: Color.fromRGBO(0, 179, 134, 1.0),
+                      ),
+                    ],
+                  ).show();
+                }else{
+                  tool.launchURL(url: tool.updateUrl);
+                }
               },
             );
           },
