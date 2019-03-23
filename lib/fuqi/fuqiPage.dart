@@ -41,7 +41,7 @@ class _fuqiPageState extends State<fuqiPage> with SingleTickerProviderStateMixin
   List<dynamic> userDatas=[];
   TextEditingController _textController = new TextEditingController();
   int page = 1;
-  int pageSize = 100;
+  int pageSize = 50;
   @override
   void initState() {
     // TODO: implement initState
